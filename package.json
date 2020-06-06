@@ -1,0 +1,64 @@
+{
+  "name": "@itsjonq/platform",
+  "version": "0.0.0",
+  "description": "A platform agnostic React component library",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "sideEffects": false,
+  "private": false,
+  "scripts": {
+    "prestart": "zero prestart",
+    "start": "npm run storybook",
+    "build:es": "BUILD_FORMAT=es zero build -d dist/es",
+    "build:cjs": "BUILD_FORMAT=cjs zero build -d dist/cjs",
+    "build": "npm run build:cjs && npm run build:es -- --no-clean",
+    "lint": "zero lint",
+    "dev": "zero test",
+    "test": "zero test --coverage",
+    "test:coverage": "zero test --coverage",
+    "format": "zero format",
+    "validate": "zero format",
+    "release": "zero release",
+    "version": "npm run build",
+    "precommit": "zero pre-commit",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsjonq/platform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itsjonq/platform/issues"
+  },
+  "homepage": "https://github.com/itsjonq/platform#readme",
+  "keywords": [],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@itsjonq/zero": "4.1.10",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "lodash": "4.17.15",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@itsjonq/is": "0.0.2",
+    "emotion": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "reakit": "^1.0.4"
+  }
+}
