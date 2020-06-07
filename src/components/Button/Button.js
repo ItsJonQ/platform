@@ -3,19 +3,29 @@ import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
+import { toPx } from '../../utils';
+import Flex from '../Flex';
 
 function Button({
+	as = 'button',
 	className,
 	children,
+	justify = 'center',
+	gap = 2,
+	href,
 	isBlock = false,
+	isDestructive = false,
 	isRounded = false,
 	isOutline = false,
+	prefix,
+	suffix,
 	forwardedRef,
 	size = 'medium',
 	variant = 'secondary',
 	...props
 }) {
-	const { isDark, platformStyles, ...theme } = useTheme();
+	const { isDark, gridBase, platformStyles, ...theme } = useTheme();
+	const componentTagName = href ? 'a' : as;
 
 	const baseStyles = css`
 		align-items: center;
@@ -31,7 +41,7 @@ function Button({
 		display: inline-flex;
 		font-weight: ${theme.buttonFontWeight};
 		height: ${theme.buttonHeight};
-		justify-content: center;
+		justify-content: ${justify};
 		line-height: ${theme.buttonLineHeight};
 		outline: none;
 		padding-left: ${theme.buttonPaddingX};
@@ -48,6 +58,7 @@ function Button({
 		}
 
 		&:active {
+			background-color: ${theme.buttonBackgroundColorActive};
 			transform: ${theme.buttonTransformActive};
 			transform-origin: center center;
 		}
@@ -68,11 +79,27 @@ function Button({
 		svg {
 			display: block;
 		}
+
+		> * {
+			margin-right: ${toPx(gridBase * gap)};
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
 	`;
 
 	const blockStyles = css`
 		display: flex;
 		width: 100%;
+
+		&:active {
+			transform: scale(1);
+		}
+	`;
+
+	const destructiveStyles = css`
+		color: ${theme.colorDestructive};
 	`;
 
 	const primaryStyles = css`
@@ -92,6 +119,25 @@ function Button({
 		&:active {
 			background-color: ${theme.buttonBackgroundColorPrimaryActive};
 		}
+
+		${isDestructive &&
+		`
+			background-color:  ${theme.colorDestructive};
+
+			&:hover,
+			&:focus {
+				background-color: ${theme.colorDestructiveHover};
+			}
+
+			&:focus {
+				border-color: ${theme.buttonBorderColorFocus};
+				box-shadow: ${theme.buttonBoxShadowDestructiveFocus};
+			}
+
+			&:active {
+				background-color: ${theme.colorDestructiveActive};
+			}
+		`}
 	`;
 
 	const primaryOutlineStyles = css`
@@ -120,6 +166,12 @@ function Button({
 		&:focus {
 			border-color: transparent;
 		}
+
+		${isDestructive &&
+		`
+			color: ${theme.colorDestructive};
+			border-color: ${theme.colorDestructive};
+		`}
 	`;
 
 	const tertiaryStyles = css`
@@ -130,6 +182,11 @@ function Button({
 		background: none;
 		border: none;
 		color: ${theme.buttonBackgroundColorPrimary};
+
+		${isDestructive &&
+		`
+			color: ${theme.colorDestructive};
+		`}
 	`;
 
 	const plainLinkStyles = css`
@@ -139,6 +196,7 @@ function Button({
 		&:hover,
 		&:active,
 		&:focus {
+			background-color: transparent;
 			text-decoration: underline;
 		}
 	`;
@@ -155,6 +213,10 @@ function Button({
 		&:focus {
 			background-color: ${theme.buttonBackgroundColorHoverDark};
 		}
+
+		&:active {
+			background-color: ${theme.buttonBackgroundColorActiveDark};
+		}
 	`;
 
 	const largeStyles = css`
@@ -165,10 +227,20 @@ function Button({
 		height: ${theme.buttonHeightSmall};
 	`;
 
+	const prefixSuffixStyles = css`
+		line-height: ${theme.inputLineHeight};
+
+		svg {
+			display: block;
+			user-select: none;
+		}
+	`;
+
 	const classes = cx(
 		baseStyles,
 		isBlock && blockStyles,
 		isRounded && roundedStyles,
+		isDestructive && destructiveStyles,
 		isDark && darkStyles,
 		size === 'large' && largeStyles,
 		size === 'small' && smallStyles,
@@ -176,15 +248,31 @@ function Button({
 		variant === 'primary' && isOutline && primaryOutlineStyles,
 		variant === 'secondary' && isOutline && secondaryOutlineStyles,
 		variant === 'tertiary' && tertiaryStyles,
-		variant === 'link' && linkStyles,
-		variant === 'plain-link' && linkStyles && plainLinkStyles,
+		(variant === 'link' || variant === 'plain-link') && linkStyles,
+		variant === 'plain-link' && plainLinkStyles,
 		platformStyles,
 		className,
 	);
 
 	return (
-		<BaseButton className={classes} ref={forwardedRef} {...props}>
-			<span>{children}</span>
+		<BaseButton
+			as={componentTagName}
+			className={classes}
+			href={href}
+			ref={forwardedRef}
+			{...props}
+		>
+			{prefix && (
+				<Flex.Item as="span" className={cx(prefixSuffixStyles)}>
+					{prefix}
+				</Flex.Item>
+			)}
+			<Flex.Item as="span">{children}</Flex.Item>
+			{suffix && (
+				<Flex.Item as="span" className={cx(prefixSuffixStyles)}>
+					{suffix}
+				</Flex.Item>
+			)}
 		</BaseButton>
 	);
 }

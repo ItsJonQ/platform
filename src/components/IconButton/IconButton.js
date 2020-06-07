@@ -8,6 +8,7 @@ function IconButton({
 	className,
 	children,
 	isBlock = false,
+	isDestructive = false,
 	forwardedRef,
 	size = 'medium',
 	variant = 'secondary',
@@ -64,6 +65,48 @@ function IconButton({
 		display: flex;
 	`;
 
+	const destructiveStyles = css`
+		color: ${theme.colorDestructive};
+	`;
+
+	const primaryStyles = css`
+		background-color: ${theme.buttonBackgroundColorPrimary};
+		color: ${theme.buttonTextColorPrimary};
+
+		&:hover,
+		&:focus {
+			background-color: ${theme.buttonBackgroundColorPrimaryHover};
+		}
+
+		&:focus {
+			border-color: ${theme.buttonBorderColorFocus};
+			box-shadow: ${theme.buttonBoxShadowFocus};
+		}
+
+		&:active {
+			background-color: ${theme.buttonBackgroundColorPrimaryActive};
+		}
+
+		${isDestructive &&
+		`
+			background-color:  ${theme.colorDestructive};
+
+			&:hover,
+			&:focus {
+				background-color: ${theme.colorDestructiveHover};
+			}
+
+			&:focus {
+				border-color: ${theme.buttonBorderColorFocus};
+				box-shadow: ${theme.buttonBoxShadowDestructiveFocus};
+			}
+
+			&:active {
+				background-color: ${theme.colorDestructiveActive};
+			}
+		`}
+	`;
+
 	const tertiaryStyles = css`
 		background-color: transparent;
 	`;
@@ -92,8 +135,10 @@ function IconButton({
 		baseStyles,
 		isBlock && blockStyles,
 		isDark && darkStyles,
+		isDestructive && destructiveStyles,
 		size === 'large' && largeStyles,
 		size === 'small' && smallStyles,
+		variant === 'primary' && primaryStyles,
 		variant === 'tertiary' && tertiaryStyles,
 		platformStyles,
 		className,

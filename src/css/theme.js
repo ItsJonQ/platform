@@ -1,6 +1,11 @@
 import { css } from 'emotion';
-import tinycolor from 'tinycolor2';
+import colorize from 'tinycolor2';
 import { toPx } from '../utils';
+
+const COLOR_PALETTE = {
+	brand: '#1E82FF',
+	destructive: '#F6372B',
+};
 
 const THEME_CONFIG_PROPS = {
 	isDark: false,
@@ -10,13 +15,24 @@ const ANIMATION_PROPS = {
 	transitionDuration: '200ms',
 	transitionDurationFast: '120ms',
 	transitionTimingFunction: 'cubic-bezier(0.08, 0.52, 0.52, 1)',
+	transitionTimingFunctionControl: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
 };
 
 const COLOR_PROPS = {
-	colorBrand: '#1E82FF',
-	colorBrandHover: tinycolor('#1E82FF').lighten(5).toHexString(),
-	colorBrandActive: tinycolor('#1E82FF').darken(5).toHexString(),
-	colorBrandFocus: tinycolor('#1E82FF').lighten(10).toHexString(),
+	colorBrand: COLOR_PALETTE.brand,
+	colorBrandHover: colorize(COLOR_PALETTE.brand).lighten(5).toHexString(),
+	colorBrandActive: colorize(COLOR_PALETTE.brand).darken(5).toHexString(),
+	colorBrandFocus: colorize(COLOR_PALETTE.brand).lighten(10).toHexString(),
+	colorDestructive: COLOR_PALETTE.destructive,
+	colorDestructiveHover: colorize(COLOR_PALETTE.destructive)
+		.lighten(5)
+		.toHexString(),
+	colorDestructiveActive: colorize(COLOR_PALETTE.destructive)
+		.darken(5)
+		.toHexString(),
+	colorDestructiveFocus: colorize(COLOR_PALETTE.destructive)
+		.lighten(10)
+		.toHexString(),
 	colorText: '#050505',
 	colorTextDark: '#E4E6EB',
 	colorBodyBackground: '#FFFFFF',
@@ -36,8 +52,14 @@ const FONT_PROPS = {
 const CONTROL_PROPS = {
 	controlBackgroundColor: '#F0F2F5',
 	controlBackgroundColorDark: '#3A3B3C',
-	controlBackgroundColorHover: '#E6E8EB',
-	controlBackgroundColorHoverDark: '#444546',
+	controlBackgroundColorHover: colorize('#F0F2F5').darken(5).toHexString(),
+	controlBackgroundColorHoverDark: colorize('#3A3B3C')
+		.lighten(5)
+		.toHexString(),
+	controlBackgroundColorActive: colorize('#F0F2F5').darken(10).toHexString(),
+	controlBackgroundColorActiveDark: colorize('#3A3B3C')
+		.darken(5)
+		.toHexString(),
 	controlBorderColor: '#DCDEE1',
 	controlBorderColorDark: '#4E4F50',
 	controlBorderRadius: '6px',
@@ -57,6 +79,9 @@ const BUTTON_PROPS = {
 	buttonBackgroundColorHover: CONTROL_PROPS.controlBackgroundColorHover,
 	buttonBackgroundColorHoverDark:
 		CONTROL_PROPS.controlBackgroundColorHoverDark,
+	buttonBackgroundColorActive: CONTROL_PROPS.controlBackgroundColorActive,
+	buttonBackgroundColorActiveDark:
+		CONTROL_PROPS.controlBackgroundColorActiveDark,
 	buttonBackgroundColorPrimary: COLOR_PROPS.colorBrand,
 	buttonBackgroundColorPrimaryActive: COLOR_PROPS.colorBrandActive,
 	buttonBackgroundColorPrimaryHover: COLOR_PROPS.colorBrandHover,
@@ -69,7 +94,12 @@ const BUTTON_PROPS = {
 	buttonBorderWidth: '1px',
 	buttonTextColorPrimary: '#FFFFFF',
 	buttonBoxShadow: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} transparent`,
-	buttonBoxShadowFocus: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} rgba(45, 136, 255, 0.4)`,
+	buttonBoxShadowFocus: `0 0 0 ${
+		CONTROL_PROPS.controlBoxShadowFocusSize
+	} ${colorize(COLOR_PROPS.colorBrand).setAlpha(0.4).toRgbString()}`,
+	buttonBoxShadowDestructiveFocus: `0 0 0 ${
+		CONTROL_PROPS.controlBoxShadowFocusSize
+	} ${colorize(COLOR_PROPS.colorDestructive).setAlpha(0.4).toRgbString()}`,
 	buttonFontWeight: 600,
 	buttonHeight: CONTROL_PROPS.controlHeight,
 	buttonHeightLarge: CONTROL_PROPS.controlHeightLarge,
@@ -79,8 +109,9 @@ const BUTTON_PROPS = {
 	buttonPaddingX: toPx(GRID_PROPS.gridBase * 4),
 	buttonTransform: 'scale(1)',
 	buttonTransformActive: 'scale(0.96)',
-	buttonTransitionDuration: '200ms',
-	buttonTransitionTimingFunction: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
+	buttonTransitionDuration: ANIMATION_PROPS.transitionDuration,
+	buttonTransitionTimingFunction:
+		ANIMATION_PROPS.transitionTimingFunctionControl,
 };
 
 const ICON_CONTROL_PROPS = {
@@ -96,8 +127,9 @@ const ICON_CONTROL_PROPS = {
 	iconControlSizeSmall: CONTROL_PROPS.controlHeightSmall,
 	iconControlTransform: 'scale(1)',
 	iconControlTransformActive: 'scale(0.96)',
-	iconControlTransitionDuration: '200ms',
-	iconControlTransitionTimingFunction: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
+	iconControlTransitionDuration: ANIMATION_PROPS.transitionDuration,
+	iconControlTransitionTimingFunction:
+		ANIMATION_PROPS.transitionTimingFunctionControl,
 };
 
 const INPUT_PROPS = {
@@ -114,7 +146,9 @@ const INPUT_PROPS = {
 	inputBorderStyle: 'solid',
 	inputBorderWidth: '1px',
 	inputBoxShadow: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} transparent`,
-	inputBoxShadowFocus: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} rgba(45, 136, 255, 0.2)`,
+	inputBoxShadowFocus: `0 0 0 ${
+		CONTROL_PROPS.controlBoxShadowFocusSize
+	} ${colorize(COLOR_PROPS.colorBrand).setAlpha(0.2).toRgbString()}`,
 	inputFontFamily: FONT_PROPS.fontFamily,
 	inputFontSize: FONT_PROPS.fontSize,
 	inputHeight: CONTROL_PROPS.controlHeight,

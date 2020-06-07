@@ -5,6 +5,7 @@ import {
 	FiMoreHorizontal,
 	FiSearch,
 	FiMenu,
+	FiKey,
 } from 'react-icons/fi';
 import { Button, Flex, IconButton, Spacer, TextField } from '../src/components';
 
@@ -31,7 +32,17 @@ export const _default = () => (
 				</Flex.Block>
 				<Flex.Block />
 				<Flex.Item>
-					<Button size="large" variant="secondary" isOutline>
+					<Button size="large" variant="link">
+						Clear
+					</Button>
+				</Flex.Item>
+				<Flex.Item>
+					<Button
+						prefix={<FiKey />}
+						size="large"
+						variant="secondary"
+						isOutline
+					>
 						Keys
 					</Button>
 				</Flex.Item>
@@ -59,6 +70,18 @@ export const _default = () => (
 					</IconButton>
 				</Flex.Item>
 			</Flex>
+		</Spacer>
+		<Spacer pt={20}>
+			<Spacer pb={1}>
+				<Button isBlock prefix={<FiKey />}>
+					Label
+				</Button>
+			</Spacer>
+			<Spacer pb={0}>
+				<Button variant="primary" isBlock>
+					Create
+				</Button>
+			</Spacer>
 		</Spacer>
 	</>
 );

@@ -16,6 +16,7 @@ function FlexBlock({
 	const { platformStyles } = useTheme();
 
 	const baseStyles = css`
+		display: block;
 		flex: 1;
 		max-width: ${toPx(maxWidth)};
 		min-width: ${toPx(minWidth)};

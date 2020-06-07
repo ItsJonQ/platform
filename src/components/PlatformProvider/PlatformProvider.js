@@ -1,7 +1,7 @@
 import React, { createContext, forwardRef, useContext } from 'react';
-import { is } from '@itsjonq/is';
 import { useTheme as useEmotionTheme } from 'emotion-theming';
 import GlobalStyles from '../GlobalStyles';
+import { is } from '../../utils';
 import { ThemeProvider, useTheme } from '../../css';
 
 export const PlatformContext = createContext({});

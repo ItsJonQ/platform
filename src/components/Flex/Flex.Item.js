@@ -17,6 +17,7 @@ function FlexItem({
 	const { platformStyles } = useTheme();
 
 	const baseStyles = css`
+		display: block;
 		max-width: ${toPx(maxWidth)};
 		min-width: ${toPx(minWidth)};
 		width: ${toPx(width)};
