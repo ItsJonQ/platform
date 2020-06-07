@@ -11,9 +11,9 @@ const ANIMATION_PROPS = {
 };
 
 const COLOR_PROPS = {
+	colorBrand: 'rgb(45, 136, 255)',
 	colorText: 'rgb(5, 5, 5)',
 	colorTextDark: 'rgb(228, 230, 235)',
-	colorBrand: 'rgb(45, 136, 255)',
 };
 
 const GRID_PROPS = {
@@ -21,9 +21,9 @@ const GRID_PROPS = {
 };
 
 const FONT_PROPS = {
-	fontSize: '15px',
 	fontFamily:
 		"Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+	fontSize: '15px',
 };
 
 const CONTROL_PROPS = {
@@ -33,12 +33,13 @@ const CONTROL_PROPS = {
 	controlBorderColorDark: 'rgba(78, 79, 80)',
 	controlBorderRadius: '4px',
 	controlBorderRadiusRound: '20px',
+	controlBoxShadowFocusSize: '2px',
 	controlHeight: '36px',
-	controlHeightXSmall: '28px',
-	controlHeightSmall: '32px',
 	controlHeightLarge: '40px',
+	controlHeightSmall: '32px',
 	controlHeightXLarge: '48px',
-	controlLineHeight: 1,
+	controlHeightXSmall: '28px',
+	controlLineHeight: '18px',
 };
 
 const INPUT_PROPS = {
@@ -51,18 +52,18 @@ const INPUT_PROPS = {
 	inputBorderRadiusRound: CONTROL_PROPS.controlBorderRadiusRound,
 	inputBorderStyle: 'solid',
 	inputBorderWidth: '1px',
-	inputBoxShadow: '0 0 0 1px transparent',
-	inputBoxShadowFocus: '0 0 0 1px rgba(45, 136, 255, 0.2)',
+	inputBoxShadow: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} transparent`,
+	inputBoxShadowFocus: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} rgba(45, 136, 255, 0.2)`,
 	inputFontFamily: FONT_PROPS.fontFamily,
 	inputFontSize: FONT_PROPS.fontSize,
 	inputHeight: CONTROL_PROPS.controlHeight,
-	inputHeightSmall: CONTROL_PROPS.controlHeightSmall,
 	inputHeightLarge: CONTROL_PROPS.controlHeightLarge,
-	inputLineHeight: '18px',
-	inputPaddingX: '12px',
+	inputHeightSmall: CONTROL_PROPS.controlHeightSmall,
+	inputLineHeight: CONTROL_PROPS.controlLineHeight,
 	inputPadding: '8px',
-	inputPaddingSmall: '6px',
 	inputPaddingLarge: '10px',
+	inputPaddingSmall: '6px',
+	inputPaddingX: '12px',
 	inputTransition: `all ${ANIMATION_PROPS.transitionDurationFast} ${ANIMATION_PROPS.transitionTimingFunction}`,
 };
 
@@ -78,11 +79,14 @@ const platformStyles = css`
 `;
 
 export const THEME_PROPS = {
+	// Base theme
 	...THEME_CONFIG_PROPS,
+	// Props
 	...ANIMATION_PROPS,
 	...COLOR_PROPS,
 	...CONTROL_PROPS,
-	...INPUT_PROPS,
 	...GRID_PROPS,
+	...INPUT_PROPS,
+	// Styles
 	platformStyles,
 };
