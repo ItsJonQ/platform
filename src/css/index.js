@@ -1,6 +1,7 @@
 import { useTheme as useEmotionTheme } from 'emotion-theming';
 import { THEME_PROPS } from './theme';
 
+export { default as cx } from 'classnames';
 export { ThemeProvider, withTheme } from 'emotion-theming';
 
 /**

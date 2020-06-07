@@ -11,9 +11,11 @@ const ANIMATION_PROPS = {
 };
 
 const COLOR_PROPS = {
-	colorBrand: 'rgb(45, 136, 255)',
-	colorText: 'rgb(5, 5, 5)',
-	colorTextDark: 'rgb(228, 230, 235)',
+	colorBrand: '#2D88FF',
+	colorText: '#050505',
+	colorTextDark: '#E4E6EB',
+	colorBodyBackground: '#FFFFFF',
+	colorBodyBackgroundDark: '#18191A',
 };
 
 const GRID_PROPS = {
@@ -27,10 +29,12 @@ const FONT_PROPS = {
 };
 
 const CONTROL_PROPS = {
-	controlBackgroundColor: 'rgb(240, 242, 245)',
-	controlBackgroundColorDark: 'rgba(58, 59, 60)',
-	controlBorderColor: 'rgb(220, 222, 225)',
-	controlBorderColorDark: 'rgba(78, 79, 80)',
+	controlBackgroundColor: '#F0F2F5',
+	controlBackgroundColorDark: '#3A3B3C',
+	controlBackgroundColorHover: '#E6E8EB',
+	controlBackgroundColorHoverDark: '#444546',
+	controlBorderColor: '#DCDEE1',
+	controlBorderColorDark: '#4E4F50',
 	controlBorderRadius: '4px',
 	controlBorderRadiusRound: '20px',
 	controlBoxShadowFocusSize: '2px',
@@ -45,6 +49,9 @@ const CONTROL_PROPS = {
 const INPUT_PROPS = {
 	inputBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
 	inputBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
+	inputBackgroundColorHover: CONTROL_PROPS.controlBackgroundColorHover,
+	inputBackgroundColorHoverDark:
+		CONTROL_PROPS.controlBackgroundColorHoverDark,
 	inputBorderColor: CONTROL_PROPS.controlBackgroundColor,
 	inputBorderColorDark: CONTROL_PROPS.controlBackgroundColorDark,
 	inputBorderColorFocus: COLOR_PROPS.colorBrand,

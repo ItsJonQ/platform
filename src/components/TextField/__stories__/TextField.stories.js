@@ -12,7 +12,7 @@ export default {
 };
 
 export const _default = () => (
-	<PlatformProvider theme={{ isDark: true }}>
+	<>
 		<Spacer>
 			<TextField onChange={noop} placeholder="TextField" size="small" />
 		</Spacer>
@@ -35,5 +35,5 @@ export const _default = () => (
 				size="small"
 			/>
 		</Spacer>
-	</PlatformProvider>
+	</>
 );

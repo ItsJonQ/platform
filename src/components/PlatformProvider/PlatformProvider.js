@@ -1,6 +1,8 @@
 import React, { createContext, forwardRef, useContext } from 'react';
 import { is } from '@itsjonq/is';
-import { ThemeProvider } from '../../css';
+import { useTheme as useEmotionTheme } from 'emotion-theming';
+import GlobalStyles from '../GlobalStyles';
+import { ThemeProvider, useTheme } from '../../css';
 
 export const PlatformContext = createContext({});
 export const usePlatformContext = () => useContext(PlatformContext);
@@ -20,9 +22,15 @@ export function platformConnect(key, Component) {
 }
 
 export function PlatformProvider({ children, theme = {}, value = {} }) {
+	const contextThemeProps = useEmotionTheme();
+	const mergedThemeProps = { ...useTheme(), ...contextThemeProps, ...theme };
+
 	return (
 		<PlatformContext.Provider value={value}>
-			<ThemeProvider theme={theme}>{children}</ThemeProvider>
+			<ThemeProvider theme={mergedThemeProps}>
+				<GlobalStyles />
+				{children}
+			</ThemeProvider>
 		</PlatformContext.Provider>
 	);
 }

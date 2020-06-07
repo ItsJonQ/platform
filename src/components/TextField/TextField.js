@@ -58,10 +58,18 @@ function TextField({
 		transition: ${theme.inputTransition};
 		width: 100%;
 
+		&:not(.is-focused):not(.is-seamless):hover {
+			background-color: ${theme.inputBackgroundColorHover};
+		}
+
 		&:active,
 		&:focus {
 			border-color: ${theme.inputBorderColorFocus};
 			box-shadow: ${theme.inputBoxShadowFocus};
+		}
+
+		&[disabled] {
+			opacity: 0.6;
 		}
 	`;
 
@@ -89,6 +97,16 @@ function TextField({
 		box-shadow: none;
 	`;
 
+	const darkStyles = css`
+		background-color: ${theme.inputBackgroundColorDark};
+		border-color: ${theme.inputBorderColorDark};
+		color: ${theme.colorTextDark};
+
+		&:not(.is-focused):not(.is-seamless):hover {
+			background-color: ${theme.inputBackgroundColorHoverDark};
+		}
+	`;
+
 	const inputStyles = css`
 		background: transparent;
 		border: none;
@@ -100,12 +118,6 @@ function TextField({
 		padding-bottom: ${theme.inputPadding};
 		padding-top: ${theme.inputPadding};
 		width: 100%;
-	`;
-
-	const darkStyles = css`
-		background-color: ${theme.inputBackgroundColorDark};
-		border-color: ${theme.inputBorderColorDark};
-		color: ${theme.colorTextDark};
 	`;
 
 	const smallStyles = css`
@@ -131,6 +143,8 @@ function TextField({
 	const classes = cx(
 		baseStyles,
 		isDark && darkStyles,
+		isFocused && 'is-focused',
+		isSeamless && 'is-seamless',
 		isFocused && focusStyles,
 		isSeamless && seamlessStyles,
 		isSeamless && isFocused && seamlessFocusStyles,
