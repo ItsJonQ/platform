@@ -6,7 +6,7 @@ export const PlatformContext = createContext({});
 export const usePlatformContext = () => useContext(PlatformContext);
 
 export function platformConnect(key, Component) {
-	return forwardRef((props, forwardedRef) => {
+	const ComposedComponent = forwardRef((props, forwardedRef) => {
 		const platformContext = usePlatformContext();
 		const contextProps = platformContext[key];
 		const mergedProps = is.plainObject(contextProps)
@@ -15,6 +15,8 @@ export function platformConnect(key, Component) {
 
 		return <Component {...mergedProps} forwardedRef={forwardedRef} />;
 	});
+
+	return ComposedComponent;
 }
 
 export function PlatformProvider({ children, theme = {}, value = {} }) {

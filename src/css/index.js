@@ -1,9 +1,12 @@
 import { useTheme as useEmotionTheme } from 'emotion-theming';
 import { THEME_PROPS } from './theme';
 
-export * from 'emotion';
-export * from 'emotion-theming';
+export { ThemeProvider, withTheme } from 'emotion-theming';
 
+/**
+ * Hook that retrieves theme props.
+ * @return {THEME_PROPS} Theme props
+ */
 export function useTheme() {
 	const emotionTheme = useEmotionTheme();
 	const theme = emotionTheme

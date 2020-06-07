@@ -29,6 +29,8 @@ const FONT_PROPS = {
 const CONTROL_PROPS = {
 	controlBackgroundColor: 'rgb(240, 242, 245)',
 	controlBackgroundColorDark: 'rgba(58, 59, 60)',
+	controlBorderColor: 'rgb(220, 222, 225)',
+	controlBorderColorDark: 'rgba(78, 79, 80)',
 	controlBorderRadius: '4px',
 	controlBorderRadiusRound: '20px',
 	controlHeight: '36px',
@@ -49,23 +51,26 @@ const INPUT_PROPS = {
 	inputBorderRadiusRound: CONTROL_PROPS.controlBorderRadiusRound,
 	inputBorderStyle: 'solid',
 	inputBorderWidth: '1px',
-	inputBoxShadow: '0 0 0 2px transparent',
-	inputBoxShadowFocus: '0 0 0 2px rgba(45, 136, 255, 0.2)',
+	inputBoxShadow: '0 0 0 1px transparent',
+	inputBoxShadowFocus: '0 0 0 1px rgba(45, 136, 255, 0.2)',
 	inputFontFamily: FONT_PROPS.fontFamily,
 	inputFontSize: FONT_PROPS.fontSize,
 	inputHeight: CONTROL_PROPS.controlHeight,
 	inputHeightSmall: CONTROL_PROPS.controlHeightSmall,
 	inputHeightLarge: CONTROL_PROPS.controlHeightLarge,
-	inputLineHeight: 1.2,
-	inputPadding: '8px 12px',
-	inputPaddingSmall: '6px 12px',
-	inputPaddingLarge: '10px 12px',
+	inputLineHeight: '18px',
+	inputPaddingX: '12px',
+	inputPadding: '8px',
+	inputPaddingSmall: '6px',
+	inputPaddingLarge: '10px',
 	inputTransition: `all ${ANIMATION_PROPS.transitionDurationFast} ${ANIMATION_PROPS.transitionTimingFunction}`,
 };
 
 const platformStyles = css`
-	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
+	box-sizing: border-box;
+	font-family: ${FONT_PROPS.fontFamily};
+	font-size: ${FONT_PROPS.fontSize};
 
 	* {
 		box-sizing: border-box;

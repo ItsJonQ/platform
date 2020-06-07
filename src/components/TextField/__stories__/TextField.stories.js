@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FiSearch } from 'react-icons/fi';
 import TextField from '../TextField';
 import PlatformProvider from '../../PlatformProvider';
 import Spacer from '../../Spacer';
@@ -14,11 +14,26 @@ export default {
 export const _default = () => (
 	<PlatformProvider theme={{ isDark: true }}>
 		<Spacer>
-			<TextField onChange={noop} placeholder="Small" size="small" />
+			<TextField onChange={noop} placeholder="TextField" size="small" />
 		</Spacer>
 		<Spacer>
-			<TextField onChange={noop} placeholder="Default" />
+			<TextField
+				prefix={<FiSearch size={16} />}
+				onChange={noop}
+				isRounded
+				placeholder="TextField + Prefix Search Icon"
+				size="small"
+			/>
 		</Spacer>
-		<TextField onChange={noop} placeholder="Large" size="large" />
+		<Spacer>
+			<TextField
+				prefix={<FiSearch size={16} />}
+				onChange={noop}
+				isRounded
+				isSeamless
+				placeholder="TextField + Prefix Search Icon"
+				size="small"
+			/>
+		</Spacer>
 	</PlatformProvider>
 );

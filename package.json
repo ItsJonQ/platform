@@ -59,6 +59,8 @@
     "@itsjonq/is": "0.0.2",
     "emotion": "^10.0.27",
     "emotion-theming": "^10.0.27",
+    "hoist-non-react-statics": "3.3.2",
+    "react-icons": "3.10.0",
     "reakit": "^1.0.4"
   }
 }

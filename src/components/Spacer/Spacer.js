@@ -1,5 +1,7 @@
 import React from 'react';
-import { css, cx, useTheme } from '../../css';
+import { css, cx } from 'emotion';
+import { useTheme } from '../../css';
+import { toPx } from '../../utils';
 
 export default function Spacer({
 	as = 'div',
@@ -100,9 +102,5 @@ export default function Spacer({
 }
 
 function createValue(gridBase) {
-	return (val) => {
-		const next = val * gridBase;
-
-		return isNaN(next) ? next : `${next}px`;
-	};
+	return (val) => toPx(val * gridBase);
 }
