@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import json2mq from 'json2mq';
-import { is, noop } from '../utils';
+import { is, noop } from '../../utils';
 
 function mockMatchMedia() {
 	return {
