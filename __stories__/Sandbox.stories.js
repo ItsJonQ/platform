@@ -6,7 +6,7 @@ import {
 	FiSearch,
 	FiMenu,
 } from 'react-icons/fi';
-import { Flex, IconButton, Spacer, TextField } from '../src/components';
+import { Button, Flex, IconButton, Spacer, TextField } from '../src/components';
 
 export default {
 	title: 'Sandbox',
@@ -17,7 +17,7 @@ export const _default = () => (
 		<Spacer>
 			<Flex gap={2}>
 				<Flex.Item>
-					<IconButton>
+					<IconButton variant="tertiary">
 						<FiMenu size={20} />
 					</IconButton>
 				</Flex.Item>
@@ -30,6 +30,19 @@ export const _default = () => (
 					/>
 				</Flex.Block>
 				<Flex.Block />
+				<Flex.Item>
+					<Button size="large" variant="secondary" isOutline>
+						Keys
+					</Button>
+				</Flex.Item>
+				<Flex.Item>
+					<Button size="large">Control</Button>
+				</Flex.Item>
+				<Flex.Item>
+					<Button size="large" variant="primary">
+						Create
+					</Button>
+				</Flex.Item>
 				<Flex.Item>
 					<IconButton>
 						<FiMessageCircle size={20} />

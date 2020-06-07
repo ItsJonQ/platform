@@ -137,6 +137,7 @@ function TextField({
 
 		svg {
 			display: block;
+			user-select: none;
 		}
 	`;
 

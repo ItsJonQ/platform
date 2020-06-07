@@ -1,4 +1,6 @@
 import { css } from 'emotion';
+import tinycolor from 'tinycolor2';
+import { toPx } from '../utils';
 
 const THEME_CONFIG_PROPS = {
 	isDark: false,
@@ -11,7 +13,10 @@ const ANIMATION_PROPS = {
 };
 
 const COLOR_PROPS = {
-	colorBrand: '#2D88FF',
+	colorBrand: '#1E82FF',
+	colorBrandHover: tinycolor('#1E82FF').lighten(5).toHexString(),
+	colorBrandActive: tinycolor('#1E82FF').darken(5).toHexString(),
+	colorBrandFocus: tinycolor('#1E82FF').lighten(10).toHexString(),
 	colorText: '#050505',
 	colorTextDark: '#E4E6EB',
 	colorBodyBackground: '#FFFFFF',
@@ -35,7 +40,7 @@ const CONTROL_PROPS = {
 	controlBackgroundColorHoverDark: '#444546',
 	controlBorderColor: '#DCDEE1',
 	controlBorderColorDark: '#4E4F50',
-	controlBorderRadius: '4px',
+	controlBorderRadius: '6px',
 	controlBorderRadiusRound: '20px',
 	controlBoxShadowFocusSize: '2px',
 	controlHeight: '36px',
@@ -46,6 +51,38 @@ const CONTROL_PROPS = {
 	controlLineHeight: '18px',
 };
 
+const BUTTON_PROPS = {
+	buttonBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
+	buttonBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
+	buttonBackgroundColorHover: CONTROL_PROPS.controlBackgroundColorHover,
+	buttonBackgroundColorHoverDark:
+		CONTROL_PROPS.controlBackgroundColorHoverDark,
+	buttonBackgroundColorPrimary: COLOR_PROPS.colorBrand,
+	buttonBackgroundColorPrimaryActive: COLOR_PROPS.colorBrandActive,
+	buttonBackgroundColorPrimaryHover: COLOR_PROPS.colorBrandHover,
+	buttonBorderColorFocus: 'transparent',
+	buttonBorderColorOutline: CONTROL_PROPS.controlBorderColor,
+	buttonBorderColorOutlineDark: CONTROL_PROPS.controlBorderColorDark,
+	buttonBorderRadius: CONTROL_PROPS.controlBorderRadius,
+	buttonBorderRadiusRound: CONTROL_PROPS.controlHeightXLarge,
+	buttonBorderStyle: 'solid',
+	buttonBorderWidth: '1px',
+	buttonTextColorPrimary: '#FFFFFF',
+	buttonBoxShadow: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} transparent`,
+	buttonBoxShadowFocus: `0 0 0 ${CONTROL_PROPS.controlBoxShadowFocusSize} rgba(45, 136, 255, 0.4)`,
+	buttonFontWeight: 600,
+	buttonHeight: CONTROL_PROPS.controlHeight,
+	buttonHeightLarge: CONTROL_PROPS.controlHeightLarge,
+	buttonHeightSmall: CONTROL_PROPS.controlHeightSmall,
+	buttonLineHeight: CONTROL_PROPS.controlLineHeight,
+	buttonPadding: '0',
+	buttonPaddingX: toPx(GRID_PROPS.gridBase * 4),
+	buttonTransform: 'scale(1)',
+	buttonTransformActive: 'scale(0.96)',
+	buttonTransitionDuration: '200ms',
+	buttonTransitionTimingFunction: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
+};
+
 const ICON_CONTROL_PROPS = {
 	iconControlBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
 	iconControlBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
@@ -54,7 +91,9 @@ const ICON_CONTROL_PROPS = {
 		CONTROL_PROPS.controlBackgroundColorHoverDark,
 	iconControlBorderRadius: '50%',
 	iconControlPadding: '0',
-	iconControlSize: '40px',
+	iconControlSize: CONTROL_PROPS.controlHeightLarge,
+	iconControlSizeLarge: CONTROL_PROPS.controlHeightXLarge,
+	iconControlSizeSmall: CONTROL_PROPS.controlHeightSmall,
 	iconControlTransform: 'scale(1)',
 	iconControlTransformActive: 'scale(0.96)',
 	iconControlTransitionDuration: '200ms',
@@ -105,6 +144,7 @@ export const THEME_PROPS = {
 	...THEME_CONFIG_PROPS,
 	// Props
 	...ANIMATION_PROPS,
+	...BUTTON_PROPS,
 	...COLOR_PROPS,
 	...CONTROL_PROPS,
 	...GRID_PROPS,
