@@ -1,7 +1,6 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import TextField from '../TextField';
-import PlatformProvider from '../../PlatformProvider';
 import Spacer from '../../Spacer';
 
 import { noop } from '../../../utils';

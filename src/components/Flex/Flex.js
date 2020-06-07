@@ -8,13 +8,16 @@ import Block from './Flex.Block';
 import Item from './Flex.Item';
 
 function Flex({
-	as = 'div',
 	align = 'center',
-	className,
+	as = 'div',
 	children,
-	justify = 'space-between',
-	gap = 4,
+	className,
 	forwardedRef,
+	gap = 4,
+	justify = 'space-between',
+	maxWidth = '100%',
+	minWidth = '0',
+	width = '100%',
 	...props
 }) {
 	const { gridBase, platformStyles } = useTheme();
@@ -23,6 +26,9 @@ function Flex({
 		align-items: ${align};
 		display: flex;
 		justify-content: ${justify};
+		max-width: ${toPx(maxWidth)};
+		min-width: ${toPx(minWidth)};
+		width: ${toPx(width)};
 
 		> * {
 			margin-right: ${toPx(gridBase * gap)};

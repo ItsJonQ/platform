@@ -46,6 +46,21 @@ const CONTROL_PROPS = {
 	controlLineHeight: '18px',
 };
 
+const ICON_CONTROL_PROPS = {
+	iconControlBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
+	iconControlBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
+	iconControlBackgroundColorHover: CONTROL_PROPS.controlBackgroundColorHover,
+	iconControlBackgroundColorHoverDark:
+		CONTROL_PROPS.controlBackgroundColorHoverDark,
+	iconControlBorderRadius: '50%',
+	iconControlPadding: '0',
+	iconControlSize: '40px',
+	iconControlTransform: 'scale(1)',
+	iconControlTransformActive: 'scale(0.96)',
+	iconControlTransitionDuration: '200ms',
+	iconControlTransitionTimingFunction: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
+};
+
 const INPUT_PROPS = {
 	inputBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
 	inputBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
@@ -93,6 +108,7 @@ export const THEME_PROPS = {
 	...COLOR_PROPS,
 	...CONTROL_PROPS,
 	...GRID_PROPS,
+	...ICON_CONTROL_PROPS,
 	...INPUT_PROPS,
 	// Styles
 	platformStyles,
