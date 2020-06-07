@@ -3,14 +3,13 @@ import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import { toPx } from '../../utils';
+import View from '../View';
 
 import Block from './Flex.Block';
 import Item from './Flex.Item';
 
 function Flex({
 	align = 'center',
-	as = 'div',
-	children,
 	className,
 	forwardedRef,
 	gap = 4,
@@ -20,7 +19,7 @@ function Flex({
 	width = '100%',
 	...props
 }) {
-	const { gridBase, platformStyles } = useTheme();
+	const { gridBase } = useTheme();
 
 	const baseStyles = css`
 		align-items: ${align};
@@ -31,21 +30,17 @@ function Flex({
 		width: ${toPx(width)};
 
 		> * {
-			margin-right: ${toPx(gridBase * gap)};
+			margin-left: ${toPx(gridBase * gap)};
 
-			&:last-child {
-				margin-right: 0;
+			&:first-child {
+				margin-left: 0;
 			}
 		}
 	`;
 
-	const classes = cx(baseStyles, platformStyles, className);
+	const classes = cx(baseStyles, className);
 
-	return React.createElement(
-		as,
-		{ className: classes, ref: forwardedRef, ...props },
-		children,
-	);
+	return <View className={classes} ref={forwardedRef} {...props} />;
 }
 
 const ConnectedComponent = platformConnect('Flex', Flex);

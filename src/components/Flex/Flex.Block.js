@@ -1,20 +1,16 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
-import { useTheme } from '../../css';
 import { toPx } from '../../utils';
+import View from '../View';
 
 function FlexBlock({
-	as = 'div',
-	children,
 	className,
 	maxWidth = '100%',
 	minWidth = '0',
 	forwardedRef,
 	...props
 }) {
-	const { platformStyles } = useTheme();
-
 	const baseStyles = css`
 		display: block;
 		flex: 1;
@@ -22,13 +18,9 @@ function FlexBlock({
 		min-width: ${toPx(minWidth)};
 	`;
 
-	const classes = cx(baseStyles, platformStyles, className);
+	const classes = cx(baseStyles, className);
 
-	return React.createElement(
-		as,
-		{ className: classes, ref: forwardedRef, ...props },
-		children,
-	);
+	return <View className={classes} ref={forwardedRef} {...props} />;
 }
 
 export default platformConnect('FlexBlock', FlexBlock);

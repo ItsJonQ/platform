@@ -1,12 +1,10 @@
 import React from 'react';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
-import { useTheme } from '../../css';
 import { toPx } from '../../utils';
+import View from '../View';
 
 function FlexItem({
-	as = 'div',
-	children,
 	className,
 	forwardedRef,
 	maxWidth = '100%',
@@ -14,8 +12,6 @@ function FlexItem({
 	width = 'auto',
 	...props
 }) {
-	const { platformStyles } = useTheme();
-
 	const baseStyles = css`
 		display: block;
 		max-width: ${toPx(maxWidth)};
@@ -23,13 +19,9 @@ function FlexItem({
 		width: ${toPx(width)};
 	`;
 
-	const classes = cx(baseStyles, platformStyles, className);
+	const classes = cx(baseStyles, className);
 
-	return React.createElement(
-		as,
-		{ className: classes, ref: forwardedRef, ...props },
-		children,
-	);
+	return <View className={classes} ref={forwardedRef} {...props} />;
 }
 
 export default platformConnect('FlexItem', FlexItem);

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { css, cx } from 'emotion';
 import Flex from '../Flex';
+import Elevation from '../Elevation';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import { noop } from '../../utils';
@@ -8,6 +9,10 @@ import { noop } from '../../utils';
 function TextField({
 	align,
 	className,
+	elevation = 0,
+	elevationActive,
+	elevationFocus,
+	elevationHover,
 	forwardedRef,
 	gap = 2.5,
 	isRounded = false,
@@ -55,11 +60,13 @@ function TextField({
 		outline: none;
 		padding-left: ${theme.inputPaddingX};
 		padding-right: ${theme.inputPaddingX};
+		position: relative;
 		transition: ${theme.inputTransition};
 		width: 100%;
 
 		&:not(.is-focused):not(.is-seamless):hover {
 			background-color: ${theme.inputBackgroundColorHover};
+			border-color: ${theme.inputBackgroundColorHover};
 		}
 
 		&:active,
@@ -104,6 +111,7 @@ function TextField({
 
 		&:not(.is-focused):not(.is-seamless):hover {
 			background-color: ${theme.inputBackgroundColorHoverDark};
+			border-color: ${theme.inputBackgroundColorHoverDark};
 		}
 	`;
 
@@ -185,6 +193,13 @@ function TextField({
 			{suffix && (
 				<Flex.Item className={prefixSuffixClasses}>{suffix}</Flex.Item>
 			)}
+			<Elevation
+				active={elevationActive}
+				focus={elevationFocus}
+				hover={elevationHover}
+				value={elevation}
+				offset={-1}
+			/>
 		</Flex>
 	);
 }

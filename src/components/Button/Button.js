@@ -4,12 +4,18 @@ import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import { toPx } from '../../utils';
+import Elevation from '../Elevation';
 import Flex from '../Flex';
+import View from '../View';
 
 function Button({
 	as = 'button',
 	className,
 	children,
+	elevation = 0,
+	elevationActive,
+	elevationFocus,
+	elevationHover,
 	justify = 'center',
 	gap = 2,
 	href,
@@ -24,7 +30,7 @@ function Button({
 	variant = 'secondary',
 	...props
 }) {
-	const { isDark, gridBase, platformStyles, ...theme } = useTheme();
+	const { isDark, gridBase, ...theme } = useTheme();
 	const componentTagName = href ? 'a' : as;
 
 	const baseStyles = css`
@@ -42,7 +48,7 @@ function Button({
 		font-weight: ${theme.buttonFontWeight};
 		height: ${theme.buttonHeight};
 		justify-content: ${justify};
-		line-height: ${theme.buttonLineHeight};
+		line-height: ${theme.buttonHeight};
 		outline: none;
 		padding-left: ${theme.buttonPaddingX};
 		padding-right: ${theme.buttonPaddingX};
@@ -81,10 +87,10 @@ function Button({
 		}
 
 		> * {
-			margin-right: ${toPx(gridBase * gap)};
+			margin-left: ${toPx(gridBase * gap)};
 
-			&:last-child {
-				margin-right: 0;
+			&:first-child {
+				margin-left: 0;
 			}
 		}
 	`;
@@ -221,10 +227,12 @@ function Button({
 
 	const largeStyles = css`
 		height: ${theme.buttonHeightLarge};
+		line-height: ${theme.buttonHeightLarge};
 	`;
 
 	const smallStyles = css`
 		height: ${theme.buttonHeightSmall};
+		line-height: ${theme.buttonHeightSmall};
 	`;
 
 	const prefixSuffixStyles = css`
@@ -234,6 +242,12 @@ function Button({
 			display: block;
 			user-select: none;
 		}
+	`;
+
+	const contentStyles = css`
+		line-height: ${theme.buttonContentLineHeight};
+		min-height: ${theme.buttonLineHeight};
+		white-space: nowrap;
 	`;
 
 	const classes = cx(
@@ -250,12 +264,12 @@ function Button({
 		variant === 'tertiary' && tertiaryStyles,
 		(variant === 'link' || variant === 'plain-link') && linkStyles,
 		variant === 'plain-link' && plainLinkStyles,
-		platformStyles,
 		className,
 	);
 
 	return (
-		<BaseButton
+		<View
+			__internal_baseComponent={BaseButton}
 			as={componentTagName}
 			className={classes}
 			href={href}
@@ -267,13 +281,21 @@ function Button({
 					{prefix}
 				</Flex.Item>
 			)}
-			<Flex.Item as="span">{children}</Flex.Item>
+			<Flex.Item className={cx(contentStyles)} as="span">
+				{children}
+			</Flex.Item>
 			{suffix && (
 				<Flex.Item as="span" className={cx(prefixSuffixStyles)}>
 					{suffix}
 				</Flex.Item>
 			)}
-		</BaseButton>
+			<Elevation
+				active={elevationActive}
+				focus={elevationFocus}
+				hover={elevationHover}
+				value={elevation}
+			/>
+		</View>
 	);
 }
 

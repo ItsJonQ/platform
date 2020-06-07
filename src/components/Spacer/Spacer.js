@@ -1,12 +1,13 @@
 import React from 'react';
 import { css, cx } from 'emotion';
+import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import { toPx } from '../../utils';
+import View from '../View';
 
-export default function Spacer({
-	as = 'div',
+function Spacer({
 	className,
-	children,
+	forwardedRef,
 	mt,
 	mb,
 	mr,
@@ -23,11 +24,10 @@ export default function Spacer({
 	p,
 	...props
 }) {
-	const { gridBase, baseStyles } = useTheme();
+	const { gridBase } = useTheme();
 	const value = createValue(gridBase);
 
 	const classes = cx(
-		baseStyles,
 		mt &&
 			css`
 				margin-top: ${value(mt)};
@@ -91,16 +91,11 @@ export default function Spacer({
 		className,
 	);
 
-	return React.createElement(
-		as,
-		{
-			className: classes,
-			...props,
-		},
-		children,
-	);
+	return <View className={classes} ref={forwardedRef} {...props} />;
 }
 
 function createValue(gridBase) {
 	return (val) => toPx(val * gridBase);
 }
+
+export default platformConnect('Spacer', Spacer);

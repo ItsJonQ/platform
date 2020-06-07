@@ -3,10 +3,18 @@ import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
+import Elevation from '../Elevation';
+import View from '../View';
 
 function IconButton({
+	as = 'button',
 	className,
 	children,
+	elevation = 0,
+	elevationActive,
+	elevationFocus,
+	elevationHover,
+	href,
 	isBlock = false,
 	isDestructive = false,
 	forwardedRef,
@@ -14,7 +22,8 @@ function IconButton({
 	variant = 'secondary',
 	...props
 }) {
-	const { isDark, platformStyles, ...theme } = useTheme();
+	const { isDark, ...theme } = useTheme();
+	const componentTagName = href ? 'a' : as;
 
 	const baseStyles = css`
 		align-items: center;
@@ -29,6 +38,7 @@ function IconButton({
 		justify-content: center;
 		outline: none;
 		padding: ${theme.iconControlPadding};
+		position: relative;
 		transform: ${theme.iconControlTransform};
 		user-select: none;
 		width: ${theme.iconControlSize};
@@ -140,14 +150,26 @@ function IconButton({
 		size === 'small' && smallStyles,
 		variant === 'primary' && primaryStyles,
 		variant === 'tertiary' && tertiaryStyles,
-		platformStyles,
 		className,
 	);
 
 	return (
-		<BaseButton className={classes} ref={forwardedRef} {...props}>
+		<View
+			__internal_baseComponent={BaseButton}
+			as={componentTagName}
+			className={classes}
+			href={href}
+			ref={forwardedRef}
+			{...props}
+		>
 			{children}
-		</BaseButton>
+			<Elevation
+				active={elevationActive}
+				focus={elevationFocus}
+				hover={elevationHover}
+				value={elevation}
+			/>
+		</View>
 	);
 }
 

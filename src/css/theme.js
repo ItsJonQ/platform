@@ -39,6 +39,11 @@ const COLOR_PROPS = {
 	colorBodyBackgroundDark: '#18191A',
 };
 
+const ELEVATION_PROPS = {
+	elevationTransitionDuration: ANIMATION_PROPS.transitionDuration,
+	elevationTransitionTimingFunction: ANIMATION_PROPS.transitionTimingFunction,
+};
+
 const GRID_PROPS = {
 	gridBase: 4,
 };
@@ -104,8 +109,8 @@ const BUTTON_PROPS = {
 	buttonHeight: CONTROL_PROPS.controlHeight,
 	buttonHeightLarge: CONTROL_PROPS.controlHeightLarge,
 	buttonHeightSmall: CONTROL_PROPS.controlHeightSmall,
-	buttonLineHeight: CONTROL_PROPS.controlLineHeight,
-	buttonPadding: '0',
+	buttonLineHeight: '18px',
+	buttonContentLineHeight: 1.1,
 	buttonPaddingX: toPx(GRID_PROPS.gridBase * 4),
 	buttonTransform: 'scale(1)',
 	buttonTransformActive: 'scale(0.96)',
@@ -181,6 +186,7 @@ export const THEME_PROPS = {
 	...BUTTON_PROPS,
 	...COLOR_PROPS,
 	...CONTROL_PROPS,
+	...ELEVATION_PROPS,
 	...GRID_PROPS,
 	...ICON_CONTROL_PROPS,
 	...INPUT_PROPS,
