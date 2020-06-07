@@ -75,7 +75,9 @@ function TextField({
 		border-color: transparent;
 
 		&:active {
-			border-color: transparent;
+			border-color: ${isDark
+				? theme.controlBorderColorDark
+				: theme.controlBorderColor};
 			box-shadow: none;
 		}
 	`;
