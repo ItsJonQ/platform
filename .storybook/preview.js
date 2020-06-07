@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { addDecorator } from '@storybook/react';
-import { PlatformProvider, Spacer } from '../src/components';
+import { PlatformProvider, Button, Spacer } from '../src/components';
 
 function PlatformStoryDecorator(storyFn) {
 	const [isDark, setIsDark] = useState(true);
 
 	return (
 		<PlatformProvider theme={{ isDark }}>
-			<Spacer>
-				<button onClick={() => setIsDark(!isDark)}>
+			<Spacer pb={10}>
+				<Button onClick={() => setIsDark(!isDark)}>
 					Toggle Dark Mode
-				</button>
+				</Button>
 			</Spacer>
 			{storyFn()}
 		</PlatformProvider>
