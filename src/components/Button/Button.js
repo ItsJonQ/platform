@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
@@ -56,6 +57,12 @@ function Button({
 		&:focus {
 			transition: all ${theme.buttonTransitionDuration}
 				${theme.buttonTransitionTimingFunction};
+		}
+
+		&[disabled],
+		&[aria-disabled='true'] {
+			cursor: auto;
+			opacity: 0.5;
 		}
 
 		svg {
@@ -176,9 +183,9 @@ function Button({
 	);
 
 	return (
-		<button className={classes} ref={forwardedRef} {...props}>
+		<BaseButton className={classes} ref={forwardedRef} {...props}>
 			<span>{children}</span>
-		</button>
+		</BaseButton>
 	);
 }
 

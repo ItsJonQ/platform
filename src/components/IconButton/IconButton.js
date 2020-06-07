@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
@@ -48,6 +49,12 @@ function IconButton({
 				${theme.iconControlTransitionTimingFunction};
 		}
 
+		&[disabled],
+		&[aria-disabled='true'] {
+			cursor: auto;
+			opacity: 0.5;
+		}
+
 		svg {
 			display: block;
 		}
@@ -93,9 +100,9 @@ function IconButton({
 	);
 
 	return (
-		<button className={classes} ref={forwardedRef} {...props}>
+		<BaseButton className={classes} ref={forwardedRef} {...props}>
 			{children}
-		</button>
+		</BaseButton>
 	);
 }
 
