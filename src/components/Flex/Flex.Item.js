@@ -3,21 +3,12 @@ import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 
-function FlexItem({
-	as = 'div',
-	align = 'center',
-	children,
-	className,
-	justify = 'space-between',
-	gap = 4,
-	forwardedRef,
-	...props
-}) {
+function FlexItem({ as = 'div', children, className, forwardedRef, ...props }) {
 	const { platformStyles } = useTheme();
 
 	const baseStyles = css`
-		min-width: 0;
 		max-width: 100%;
+		min-width: 0;
 	`;
 
 	const classes = cx(baseStyles, platformStyles, className);
