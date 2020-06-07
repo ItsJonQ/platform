@@ -1,3 +1,3 @@
 # 📦 Platform
 
-> A platform agnostic React component library
+> A native-like React component library
