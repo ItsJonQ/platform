@@ -45,6 +45,7 @@ function Elevation({
 		top: ${toPx(offset)};
 		transition: box-shadow ${theme.elevationTransitionDuration}
 			${theme.elevationTransitionTimingFunction};
+		will-change: box-shadow;
 	`;
 
 	if (is.defined(hoverValue)) {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addDecorator } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 import { PlatformProvider, Button, Spacer } from '../src/components';
 
 function PlatformStoryDecorator(storyFn) {
@@ -18,3 +19,4 @@ function PlatformStoryDecorator(storyFn) {
 }
 
 addDecorator(PlatformStoryDecorator);
+addDecorator(withKnobs);
