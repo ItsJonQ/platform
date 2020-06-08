@@ -141,6 +141,11 @@ function IconButton({
 		width: ${theme.iconControlSizeSmall};
 	`;
 
+	const tinyStyles = css`
+		height: ${theme.iconControlSizeTiny};
+		width: ${theme.iconControlSizeTiny};
+	`;
+
 	const classes = cx(
 		baseStyles,
 		isBlock && blockStyles,
@@ -148,6 +153,7 @@ function IconButton({
 		isDestructive && destructiveStyles,
 		size === 'large' && largeStyles,
 		size === 'small' && smallStyles,
+		size === 'tiny' && tinyStyles,
 		variant === 'primary' && primaryStyles,
 		variant === 'tertiary' && tertiaryStyles,
 		className,

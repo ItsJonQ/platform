@@ -19,6 +19,7 @@ function Elevation({
 }) {
 	const theme = useTheme();
 	const boxShadow = getBoxShadow(value);
+
 	let hoverValue = is.defined(hover) ? hover : value * 2;
 	let activeValue = is.defined(active) ? hover : value / 2;
 
@@ -38,6 +39,7 @@ function Elevation({
 		bottom: ${toPx(offset)};
 		left: ${toPx(offset)};
 		margin: 0 !important;
+		pointer-events: none;
 		position: absolute;
 		right: ${toPx(offset)};
 		top: ${toPx(offset)};
@@ -47,7 +49,7 @@ function Elevation({
 
 	if (is.defined(hoverValue)) {
 		hoverStyles = css`
-			&:hover {
+			*:hover > & {
 				box-shadow: ${getBoxShadow(hoverValue)};
 			}
 		`;
@@ -55,7 +57,7 @@ function Elevation({
 
 	if (is.defined(activeValue)) {
 		activeStyles = css`
-			&:active {
+			*:active > & {
 				box-shadow: ${getBoxShadow(activeValue)};
 			}
 		`;
@@ -63,7 +65,7 @@ function Elevation({
 
 	if (is.defined(focus)) {
 		focusStyles = css`
-			&:focus {
+			*:focus > & {
 				box-shadow: ${getBoxShadow(focus)};
 			}
 		`;

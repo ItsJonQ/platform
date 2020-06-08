@@ -48,7 +48,6 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/react": "^5.3.19",
     "babel-loader": "^8.1.0",
-    "lodash": "4.17.15",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
@@ -61,9 +60,10 @@
     "classnames": "2.2.6",
     "emotion": "^10.0.27",
     "emotion-theming": "^10.0.27",
-    "json2mq": "0.2.0",
+    "json2mq": "^0.2.0",
+    "lodash": "^4.17.15",
     "react-icons": "^3.10.0",
     "reakit": "^1.0.4",
-    "tinycolor2": "1.4.1"
+    "tinycolor2": "^1.4.1"
   }
 }

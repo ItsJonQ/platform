@@ -3,11 +3,16 @@ import {
 	FiBell,
 	FiMessageCircle,
 	FiMoreHorizontal,
-	FiSearch,
 	FiMenu,
 	FiKey,
 } from 'react-icons/fi';
-import { Button, Flex, IconButton, Spacer, TextField } from '../src/components';
+import {
+	Button,
+	Flex,
+	IconButton,
+	SearchInput,
+	Spacer,
+} from '../src/components';
 
 export default {
 	title: 'Sandbox',
@@ -23,9 +28,8 @@ export const _default = () => (
 					</IconButton>
 				</Flex.Item>
 				<Flex.Block minWidth={240} maxWidth={600}>
-					<TextField
-						isRounded
-						prefix={<FiSearch size={16} />}
+					<SearchInput
+						elevation={2}
 						placeholder="Search for..."
 						size="large"
 					/>
