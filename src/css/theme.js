@@ -168,6 +168,11 @@ const INPUT_PROPS = {
 	inputTransition: `all ${ANIMATION_PROPS.transitionDurationFast} ${ANIMATION_PROPS.transitionTimingFunction}`,
 };
 
+const SPINNER_PROPS = {
+	spinnerAnimationDuration: '1000ms',
+	spinnerOpacity: 0.6,
+};
+
 const platformStyles = css`
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
@@ -191,6 +196,7 @@ export const THEME_PROPS = {
 	...GRID_PROPS,
 	...ICON_CONTROL_PROPS,
 	...INPUT_PROPS,
+	...SPINNER_PROPS,
 	// Styles
 	platformStyles,
 };

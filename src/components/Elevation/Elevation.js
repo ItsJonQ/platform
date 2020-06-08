@@ -37,6 +37,7 @@ function Elevation({
 		box-shadow: ${boxShadow};
 		border-radius: ${borderRadius};
 		bottom: ${toPx(offset)};
+		display: block;
 		left: ${toPx(offset)};
 		margin: 0 !important;
 		pointer-events: none;
@@ -80,7 +81,14 @@ function Elevation({
 		className,
 	);
 
-	return <View className={classes} ref={forwardedRef} {...props} />;
+	return (
+		<View
+			aria-hidden="true"
+			className={classes}
+			ref={forwardedRef}
+			{...props}
+		/>
+	);
 }
 
 function getBoxShadow(value) {

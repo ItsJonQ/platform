@@ -3,6 +3,7 @@ import { css, cx } from 'emotion';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { platformConnect } from '../PlatformProvider';
 import IconButton from '../IconButton';
+import Spinner from '../Spinner';
 import TextField from '../TextField';
 import { useControlledState } from '../../hooks';
 import { forwardRefAndSet, noop, isValueEmpty } from '../../utils';
@@ -12,6 +13,7 @@ function SearchInput({
 	onChange = noop,
 	onClear = noop,
 	forwardedRef,
+	isLoading = false,
 	isRounded = true,
 	prefix,
 	suffix,
@@ -71,16 +73,12 @@ function SearchInput({
 
 	return (
 		<TextField
+			aria-busy={isLoading}
 			className={classes}
 			onChange={handleOnChange}
 			isRounded={isRounded}
 			ref={forwardRefAndSet(forwardRefAndSet, textFieldRef)}
-			prefix={
-				<>
-					<FiSearch size={16} />
-					{prefix}
-				</>
-			}
+			prefix={<SearchPrefix isLoading={isLoading} prefix={prefix} />}
 			suffix={
 				<>
 					{suffix}
@@ -91,6 +89,15 @@ function SearchInput({
 			value={state}
 			{...props}
 		/>
+	);
+}
+
+function SearchPrefix({ isLoading = false, prefix }) {
+	return (
+		<>
+			{isLoading ? <Spinner size={16} /> : <FiSearch size={16} />}
+			{prefix}
+		</>
 	);
 }
 

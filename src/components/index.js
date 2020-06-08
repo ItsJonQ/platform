@@ -9,5 +9,6 @@ export { default as IconButton } from './IconButton';
 export { default as MediaQuery } from './MediaQuery';
 export { default as SearchInput } from './SearchInput';
 export { default as Spacer } from './Spacer';
+export { default as Spinner } from './Spinner';
 export { default as TextField } from './TextField';
 export { default as Viewport } from './Viewport';

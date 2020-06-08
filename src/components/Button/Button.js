@@ -3,9 +3,9 @@ import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
-import { toPx } from '../../utils';
 import Elevation from '../Elevation';
 import Flex from '../Flex';
+import Spinner from '../Spinner';
 import View from '../View';
 
 function Button({
@@ -21,6 +21,7 @@ function Button({
 	href,
 	isBlock = false,
 	isDestructive = false,
+	isLoading = false,
 	isRounded = false,
 	isOutline = false,
 	prefix,
@@ -47,7 +48,6 @@ function Button({
 		display: inline-flex;
 		font-weight: ${theme.buttonFontWeight};
 		height: ${theme.buttonHeight};
-		justify-content: ${justify};
 		line-height: ${theme.buttonHeight};
 		outline: none;
 		padding-left: ${theme.buttonPaddingX};
@@ -85,14 +85,6 @@ function Button({
 		svg {
 			display: block;
 		}
-
-		> * {
-			margin-left: ${toPx(gridBase * gap)};
-
-			&:first-child {
-				margin-left: 0;
-			}
-		}
 	`;
 
 	const blockStyles = css`
@@ -102,10 +94,6 @@ function Button({
 		&:active {
 			transform: scale(1);
 		}
-	`;
-
-	const destructiveStyles = css`
-		color: ${theme.colorDestructive};
 	`;
 
 	const primaryStyles = css`
@@ -186,7 +174,7 @@ function Button({
 
 	const linkStyles = css`
 		background: none;
-		border: none;
+		border-color: transparent;
 		color: ${theme.buttonBackgroundColorPrimary};
 
 		${isDestructive &&
@@ -223,6 +211,12 @@ function Button({
 		&:active {
 			background-color: ${theme.buttonBackgroundColorActiveDark};
 		}
+
+		${isDestructive &&
+		`
+		color: ${theme.colorDestructive};
+
+		`}
 	`;
 
 	const largeStyles = css`
@@ -250,11 +244,19 @@ function Button({
 		white-space: nowrap;
 	`;
 
+	const loadingStyles = css`
+		opacity: 1;
+
+		${isLoading &&
+		`
+			opacity: 0;
+		`}
+	`;
+
 	const classes = cx(
 		baseStyles,
 		isBlock && blockStyles,
 		isRounded && roundedStyles,
-		isDestructive && destructiveStyles,
 		isDark && darkStyles,
 		size === 'large' && largeStyles,
 		size === 'small' && smallStyles,
@@ -270,32 +272,66 @@ function Button({
 	return (
 		<View
 			__internal_baseComponent={BaseButton}
+			aria-busy={isLoading}
 			as={componentTagName}
 			className={classes}
 			href={href}
 			ref={forwardedRef}
 			{...props}
 		>
-			{prefix && (
-				<Flex.Item as="span" className={cx(prefixSuffixStyles)}>
-					{prefix}
+			<LoadingOverlay isLoading={isLoading} />
+			<Flex as="span" gap={gap} justify={justify}>
+				{prefix && (
+					<Flex.Item
+						as="span"
+						className={cx(prefixSuffixStyles, loadingStyles)}
+					>
+						{prefix}
+					</Flex.Item>
+				)}
+				<Flex.Item
+					className={cx(contentStyles, loadingStyles)}
+					as="span"
+				>
+					{children}
 				</Flex.Item>
-			)}
-			<Flex.Item className={cx(contentStyles)} as="span">
-				{children}
-			</Flex.Item>
-			{suffix && (
-				<Flex.Item as="span" className={cx(prefixSuffixStyles)}>
-					{suffix}
-				</Flex.Item>
-			)}
+				{suffix && (
+					<Flex.Item
+						as="span"
+						className={cx(prefixSuffixStyles, loadingStyles)}
+					>
+						{suffix}
+					</Flex.Item>
+				)}
+			</Flex>
 			<Elevation
 				active={elevationActive}
+				as="span"
 				focus={elevationFocus}
 				hover={elevationHover}
+				offset={-1}
 				value={elevation}
 			/>
 		</View>
+	);
+}
+
+export function LoadingOverlay({ isLoading = false }) {
+	if (!isLoading) return null;
+
+	const styles = css`
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	`;
+
+	return (
+		<Flex aria-hidden="true" className={cx(styles)} justify="center">
+			<Spinner color={'currentColor'} />
+		</Flex>
 	);
 }
 
