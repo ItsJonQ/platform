@@ -9,12 +9,12 @@ export default {
 
 export const _default = () => {
 	const props = {
-		disabled: boolean('disabled', true),
+		disabled: boolean('disabled', false),
 		elevation: number('elevation', 0),
-		isDestructive: boolean('isDestructive', true),
-		isLoading: boolean('isLoading', true),
-		isOutline: boolean('isOutline', true),
-		isRounded: boolean('isRounded', true),
+		isDestructive: boolean('isDestructive', false),
+		isLoading: boolean('isLoading', false),
+		isOutline: boolean('isOutline', false),
+		isRounded: boolean('isRounded', false),
 		size: select(
 			'size',
 			{
