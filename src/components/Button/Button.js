@@ -85,6 +85,11 @@ function Button({
 		svg {
 			display: block;
 		}
+
+		${isDestructive &&
+		`
+		color: ${theme.colorDestructive};
+		`}
 	`;
 
 	const blockStyles = css`
@@ -215,7 +220,6 @@ function Button({
 		${isDestructive &&
 		`
 		color: ${theme.colorDestructive};
-
 		`}
 	`;
 
