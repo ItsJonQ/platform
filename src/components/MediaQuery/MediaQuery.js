@@ -1,6 +1,6 @@
 import { useMediaQuery } from './useMediaQuery';
 
-export function MediaQuery({ children, media }) {
+function MediaQuery({ children, media }) {
 	const match = useMediaQuery(media);
 
 	if (!media || !match) return null;
