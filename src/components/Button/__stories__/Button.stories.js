@@ -11,6 +11,7 @@ export const _default = () => {
 	const props = {
 		disabled: boolean('disabled', false),
 		elevation: number('elevation', 0),
+		isBlock: boolean('isBlock', false),
 		isDestructive: boolean('isDestructive', false),
 		isLoading: boolean('isLoading', false),
 		isOutline: boolean('isOutline', false),
