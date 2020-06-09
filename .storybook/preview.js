@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { PlatformProvider, Button, Spacer } from '../src/components';
 
 function PlatformStoryDecorator(storyFn) {
-	const [isDark, setIsDark] = useState(true);
+	const [isDark, setIsDark] = useState(false);
 
 	return (
 		<PlatformProvider theme={{ isDark }}>
