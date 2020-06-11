@@ -23,6 +23,7 @@ function Button({
 	isDestructive = false,
 	isLoading = false,
 	isRounded = false,
+	isNarrow = false,
 	isOutline = false,
 	prefix,
 	suffix,
@@ -87,8 +88,14 @@ function Button({
 		}
 
 		${isDestructive &&
-		`
-		color: ${theme.colorDestructive};
+		css`
+			color: ${theme.colorDestructive};
+		`}
+
+		${isNarrow &&
+		css`
+			padding-left: ${theme.buttonPaddingXNarrow};
+			padding-right: ${theme.buttonPaddingXNarrow};
 		`}
 	`;
 

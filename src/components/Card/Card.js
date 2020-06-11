@@ -10,7 +10,6 @@ import Footer from './Card.Footer';
 function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 	const baseStyles = css`
 		background: white;
-		border: 1px solid transparent;
 		border-radius: 8px;
 		position: relative;
 	`;
@@ -20,8 +19,8 @@ function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 	return (
 		<View className={classes} ref={forwardedRef} {...props}>
 			{children}
-			<Elevation value={1} isInteractive={false} offset={-1} />
-			<Elevation value={elevation} isInteractive={false} offset={-1} />
+			<Elevation value={1} isInteractive={false} />
+			<Elevation value={elevation} isInteractive={false} />
 		</View>
 	);
 }

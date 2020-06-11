@@ -112,6 +112,7 @@ const BUTTON_PROPS = {
 	buttonLineHeight: CONTROL_PROPS.controlLineHeight,
 	buttonContentLineHeight: CONTROL_PROPS.controlLineHeight,
 	buttonPaddingX: toPx(GRID_PROPS.gridBase * 4),
+	buttonPaddingXNarrow: toPx(GRID_PROPS.gridBase * 2),
 	buttonTransform: 'scale(1)',
 	buttonTransformActive: 'scale(0.96)',
 	buttonTransitionDuration: ANIMATION_PROPS.transitionDuration,

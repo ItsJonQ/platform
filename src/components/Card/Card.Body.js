@@ -6,6 +6,7 @@ import View from '../View';
 function CardBody({ className, forwardedRef, ...props }) {
 	const baseStyles = css`
 		padding: 16px;
+		position: relative;
 	`;
 
 	const classes = cx(baseStyles, className);

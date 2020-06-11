@@ -7,5 +7,18 @@ export default {
 };
 
 export const _default = () => {
-	return <Modal />;
+	return (
+		<Modal>
+			<Modal.Header title={'Modal Title'} />
+			<Modal.Body>
+				<h2>First</h2>
+				<Modal>
+					<Modal.Header title={'Inner Modal Title'} />
+					<Modal.Body>
+						<h2>Second</h2>
+					</Modal.Body>
+				</Modal>
+			</Modal.Body>
+		</Modal>
+	);
 };
