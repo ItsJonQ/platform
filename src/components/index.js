@@ -2,6 +2,7 @@ export { default as PlatformProvider } from './PlatformProvider';
 export { default as View } from './View';
 
 export { default as Button } from './Button';
+export { default as ControlList } from './ControlList';
 export { default as Flex } from './Flex';
 export { default as Elevation } from './Elevation';
 export { default as GlobalStyles } from './GlobalStyles';
@@ -11,6 +12,7 @@ export { default as Modal } from './Modal';
 export { default as SearchInput } from './SearchInput';
 export { default as Spacer } from './Spacer';
 export { default as Spinner } from './Spinner';
+export { default as Surface } from './Surface';
 export { default as Switch } from './Switch';
 export { default as Text } from './Text';
 export { default as TextField } from './TextField';

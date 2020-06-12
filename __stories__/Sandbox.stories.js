@@ -8,8 +8,10 @@ import {
 } from 'react-icons/fi';
 import {
 	Button,
+	ControlList,
 	Flex,
 	IconButton,
+	Modal,
 	SearchInput,
 	Spacer,
 } from '../src/components';
@@ -86,6 +88,26 @@ export const _default = () => (
 					Create
 				</Button>
 			</Spacer>
+		</Spacer>
+		<Spacer pt={20}>
+			<Spacer>
+				<Modal renderTrigger={<Modal.Trigger>Modal</Modal.Trigger>}>
+					<Modal.Header title={'Modal Title'} />
+					<Modal.Body>
+						<h2>Hello</h2>
+						<Modal
+							renderTrigger={<Modal.Trigger>Modal</Modal.Trigger>}
+						>
+							<Modal.Header title={'Inner Modal'} />
+							<Modal.Body>
+								<h2>Hello Again!</h2>
+								<h2>Have a great day</h2>
+							</Modal.Body>
+						</Modal>
+					</Modal.Body>
+				</Modal>
+			</Spacer>
+			<ControlList />
 		</Spacer>
 	</>
 );

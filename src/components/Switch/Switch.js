@@ -40,13 +40,13 @@ function Switch({
 	const Control = ControlComponent[type] || Checkbox;
 
 	const baseStyles = css`
-		position: relative;
-		display: inline-flex;
-		margin: 0;
 		cursor: pointer;
-		width: ${theme.switchWidth};
+		display: flex;
 		height: ${theme.switchHeight};
+		margin: 0;
+		position: relative;
 		user-select: none;
+		width: ${theme.switchWidth};
 
 		${disabled &&
 		css`

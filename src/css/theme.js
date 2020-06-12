@@ -202,6 +202,7 @@ const SWITCH_PROPS = {
 
 const platformStyles = css`
 	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: transparent;
 	box-sizing: border-box;
 	font-family: ${FONT_PROPS.fontFamily};
 	font-size: ${FONT_PROPS.fontSize};

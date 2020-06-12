@@ -10,7 +10,7 @@ import {
 } from '../src/components';
 
 function PlatformStoryDecorator(storyFn) {
-	const [isDark, setIsDark] = useState(false);
+	const [isDark, setIsDark] = useState(true);
 
 	return (
 		<PlatformProvider theme={{ isDark }}>

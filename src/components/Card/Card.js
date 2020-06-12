@@ -2,35 +2,24 @@ import React from 'react';
 import { css, cx } from 'emotion';
 import { platformConnect } from '../PlatformProvider';
 import Elevation from '../Elevation';
-import View from '../View';
+import Surface from '../Surface';
 import Body from './Card.Body';
 import Header from './Card.Header';
 import Footer from './Card.Footer';
-import { useTheme } from '../../css';
 
 function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
-	const { isDark, ...theme } = useTheme();
-
 	const baseStyles = css`
-		background-color: ${theme.cardBackgroundColor};
 		border-radius: 8px;
-		color: ${theme.colorText};
-		position: relative;
 	`;
 
-	const darkStyles = css`
-		background-color: ${theme.cardBackgroundColorDark};
-		color: ${theme.colorTextDark};
-	`;
-
-	const classes = cx(baseStyles, isDark && darkStyles, className);
+	const classes = cx(baseStyles, className);
 
 	return (
-		<View className={classes} ref={forwardedRef} {...props}>
+		<Surface className={classes} ref={forwardedRef} {...props}>
 			{children}
-			<Elevation value={1} isInteractive={false} />
+			<Elevation value={elevation ? 1 : 0} isInteractive={false} />
 			<Elevation value={elevation} isInteractive={false} />
-		</View>
+		</Surface>
 	);
 }
 
