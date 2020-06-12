@@ -43,8 +43,8 @@ const COLOR_PROPS = {
 const SURFACE_PROPS = {
 	surfaceBackgroundColor: '#fff',
 	surfaceBackgroundColorDark: '#292929',
-	surfaceContainerBackground: '#EFEFF3',
-	surfaceContainerBackgroundDark: COLOR_PROPS.colorBodyBackgroundDark,
+	surfaceBackgroundBackgroundColor: '#EFEFF3',
+	surfaceBackgroundBackgroundColorDark: COLOR_PROPS.colorBodyBackgroundDark,
 };
 
 const ELEVATION_PROPS = {

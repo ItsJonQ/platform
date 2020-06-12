@@ -4,15 +4,15 @@ import { platformConnect } from '../PlatformProvider';
 import View from '../View';
 import { useTheme } from '../../css';
 
-function ControlListContainer({ className, forwardedRef, ...props }) {
+function Background({ className, forwardedRef, ...props }) {
 	const { isDark, ...theme } = useTheme();
 
 	const baseStyles = css`
-		background-color: ${theme.surfaceContainerBackground};
+		background-color: ${theme.surfaceBackgroundBackgroundColor};
 
 		${isDark &&
 		css`
-			background-color: ${theme.surfaceContainerBackgroundDark};
+			background-color: ${theme.surfaceBackgroundBackgroundColorDark};
 		`}
 	`;
 
@@ -21,4 +21,4 @@ function ControlListContainer({ className, forwardedRef, ...props }) {
 	return <View className={classes} ref={forwardedRef} {...props} />;
 }
 
-export default platformConnect('ControlListContainer', ControlListContainer);
+export default platformConnect('Background', Background);

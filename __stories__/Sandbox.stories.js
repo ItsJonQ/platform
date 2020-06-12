@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fi';
 import {
 	Button,
-	ControlListContainer,
+	Background,
 	ControlList,
 	Flex,
 	IconButton,
@@ -108,11 +108,11 @@ export const _default = () => (
 					</Modal.Body>
 				</Modal>
 			</Spacer>
-			<ControlListContainer>
+			<Background>
 				<Spacer p={4}>
 					<ControlList />
 				</Spacer>
-			</ControlListContainer>
+			</Background>
 		</Spacer>
 	</>
 );
