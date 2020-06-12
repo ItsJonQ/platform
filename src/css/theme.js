@@ -14,6 +14,7 @@ const THEME_CONFIG_PROPS = {
 const ANIMATION_PROPS = {
 	transitionDuration: '200ms',
 	transitionDurationFast: '120ms',
+	transitionDurationFaster: '100ms',
 	transitionTimingFunction: 'cubic-bezier(0.08, 0.52, 0.52, 1)',
 	transitionTimingFunctionControl: 'cubic-bezier(0.12, 0.8, 0.32, 1)',
 };
@@ -75,6 +76,7 @@ const CONTROL_PROPS = {
 	controlHeightSmall: '32px',
 	controlHeightXLarge: '48px',
 	controlHeightXSmall: '28px',
+	controlHeightXXSmall: '20px',
 	controlLineHeight: '18px',
 };
 
@@ -181,6 +183,23 @@ const SPINNER_PROPS = {
 	spinnerOpacity: 0.6,
 };
 
+const SWITCH_PROPS = {
+	switchBackgroundColor: 'rgba(0, 0, 0, 0.1)',
+	switchBackgroundColorDark: 'rgba(255, 255, 255, 0.16)',
+	switchBackgroundColorActive: '#34c759',
+	switchToggleColor: '#fff',
+	switchToggleBoxShadow: '0px 1px 2px rgba(0, 0, 0, 0.3)',
+	switchToggleOffset: 2,
+	switchHeight: CONTROL_PROPS.controlHeightXSmall,
+	switchHeightLarge: CONTROL_PROPS.controlHeightSmall,
+	switchHeightSmall: CONTROL_PROPS.controlHeightXXSmall,
+	switchWidth: '48px',
+	switchWidthLarge: '52px',
+	switchWidthSmall: '36px',
+	switchToggleTransitionDuration: ANIMATION_PROPS.transitionDurationFaster,
+	switchTransitionDuration: ANIMATION_PROPS.transitionDurationFaster,
+};
+
 const platformStyles = css`
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
@@ -206,6 +225,7 @@ export const THEME_PROPS = {
 	...ICON_CONTROL_PROPS,
 	...INPUT_PROPS,
 	...SPINNER_PROPS,
+	...SWITCH_PROPS,
 	// Styles
 	platformStyles,
 };

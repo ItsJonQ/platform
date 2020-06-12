@@ -1,4 +1,5 @@
 import React, { createContext, forwardRef, useContext } from 'react';
+import { cx } from 'emotion';
 import { useTheme as useEmotionTheme } from 'emotion-theming';
 import GlobalStyles from '../GlobalStyles';
 import { is } from '../../utils';
@@ -8,15 +9,26 @@ export const PlatformContext = createContext({});
 export const usePlatformContext = () => useContext(PlatformContext);
 
 export function platformConnect(key, Component) {
-	const ComposedComponent = forwardRef((props, forwardedRef) => {
-		const platformContext = usePlatformContext();
-		const contextProps = platformContext[key];
-		const mergedProps = is.plainObject(contextProps)
-			? { ...contextProps, ...props }
-			: props;
+	const ComposedComponent = forwardRef(
+		({ className, ...props }, forwardedRef) => {
+			const { platformStyles } = useTheme();
+			const platformContext = usePlatformContext();
+			const contextProps = platformContext[key];
+			const mergedProps = is.plainObject(contextProps)
+				? { ...contextProps, ...props }
+				: props;
 
-		return <Component {...mergedProps} forwardedRef={forwardedRef} />;
-	});
+			const classes = cx(platformStyles, className);
+
+			return (
+				<Component
+					{...mergedProps}
+					forwardedRef={forwardedRef}
+					className={classes}
+				/>
+			);
+		},
+	);
 
 	return ComposedComponent;
 }

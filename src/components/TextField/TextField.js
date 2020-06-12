@@ -158,7 +158,6 @@ function TextField({
 		isSeamless && seamlessStyles,
 		isSeamless && isFocused && seamlessFocusStyles,
 		className,
-		theme.platformStyles,
 	);
 
 	const inputClasses = cx(

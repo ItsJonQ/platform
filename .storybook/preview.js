@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { PlatformProvider, Button, Spacer } from '../src/components';
+import {
+	PlatformProvider,
+	Flex,
+	Spacer,
+	Switch,
+	Text,
+} from '../src/components';
 
 function PlatformStoryDecorator(storyFn) {
 	const [isDark, setIsDark] = useState(false);
@@ -9,9 +15,16 @@ function PlatformStoryDecorator(storyFn) {
 	return (
 		<PlatformProvider theme={{ isDark }}>
 			<Spacer pb={10}>
-				<Button onClick={() => setIsDark(!isDark)}>
-					Toggle Dark Mode
-				</Button>
+				<Flex style={{ maxWidth: 180 }}>
+					<Flex.Item>
+						<Text>
+							<strong>Dark Mode</strong>
+						</Text>
+					</Flex.Item>
+					<Flex.Item>
+						<Switch checked={isDark} onChange={setIsDark} />
+					</Flex.Item>
+				</Flex>
 			</Spacer>
 			{storyFn()}
 		</PlatformProvider>

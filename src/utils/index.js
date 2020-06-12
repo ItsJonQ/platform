@@ -1,3 +1,4 @@
+export * from './id';
 export * from './interpolate';
 export * from './is';
 export * from './math';

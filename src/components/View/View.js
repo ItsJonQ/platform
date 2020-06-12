@@ -1,6 +1,4 @@
 import React, { forwardRef } from 'react';
-import { cx } from 'emotion';
-import { useTheme } from '../../css';
 
 function View(
 	{
@@ -12,10 +10,8 @@ function View(
 	},
 	ref,
 ) {
-	const { platformStyles } = useTheme();
-	const classes = cx(platformStyles, className);
 	const componentProps = {
-		className: classes,
+		className,
 		ref,
 		...props,
 	};
