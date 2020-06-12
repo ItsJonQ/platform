@@ -116,6 +116,7 @@ function ControlList({ className, forwardedRef, ...props }) {
 
 	const baseStyles = css`
 		padding: 0;
+		max-width: 600px;
 
 		${breakpoint('md')`
 			border-radius: 8px;
