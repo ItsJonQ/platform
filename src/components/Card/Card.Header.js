@@ -5,16 +5,21 @@ import Flex from '../Flex';
 import { useTheme } from '../../css';
 
 function CardHeader({ className, forwardedRef, ...props }) {
-	const { space } = useTheme();
+	const { isDark, space, ...theme } = useTheme();
 
 	const baseStyles = css`
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid;
+		border-bottom-color: ${theme.cardSectionBorderColor};
 		min-height: ${space(12)};
-		padding: ${space(4)};
+		padding: ${space(2)};
 		position: relative;
 	`;
 
-	const classes = cx(baseStyles, className);
+	const darkStyles = css`
+		border-bottom-color: ${theme.cardSectionBorderColorDark};
+	`;
+
+	const classes = cx(baseStyles, isDark && darkStyles, className);
 
 	return <Flex className={classes} ref={forwardedRef} {...props} />;
 }

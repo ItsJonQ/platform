@@ -1,20 +1,20 @@
 import React from 'react';
-import {
-	useDialogState,
-	Dialog,
-	DialogBackdrop,
-	DialogDisclosure,
-} from 'reakit/Dialog';
+import { useDialogState, Dialog, DialogBackdrop } from 'reakit/Dialog';
 import { Portal } from 'reakit/Portal';
 import { css, cx } from 'emotion';
 import { ModalContext } from './Modal.Context';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
-import Button from '../Button';
 import Card from '../Card';
 import View from '../View';
+import { is } from '../../utils';
 
+import { useModalState } from './Modal.Context';
 import ModalHeader from './Modal.Header';
+import ModalFooter from './Modal.Footer';
+import ModalTrigger from './Modal.Trigger';
+
+export { useModalContext } from './Modal.Context';
 
 const MODAL_SIZES = {
 	lg: 720,
@@ -31,13 +31,15 @@ function Modal({
 	transitionDuration = 200,
 	backdropTransitionDuration = 250,
 	size = 'md',
-	visible = true,
+	visible = false,
+	renderTrigger = null,
 	zIndex = 999,
 	...props
 }) {
 	const { breakpoint, space } = useTheme();
 	const dialog = useDialogState({ animated: true, visible });
-	console.log(dialog);
+	const { isUnderLayer } = useModalState(dialog);
+
 	const maxWidth = MODAL_SIZES[size] || MODAL_SIZES.md;
 
 	const modalTransition = `
@@ -73,6 +75,12 @@ function Modal({
 		&[data-enter] {
 			opacity: 1;
 			transform: translate3d(-50%, 0, 0);
+
+			${isUnderLayer &&
+			css`
+				transform: translate3d(-50%, -10px, 0) scale(0.95);
+				transform-origin: top center;
+			`}
 		}
 	`;
 
@@ -111,9 +119,7 @@ function Modal({
 
 	return (
 		<ModalContext.Provider value={contextProps}>
-			<DialogDisclosure {...dialog} as={Button}>
-				Open
-			</DialogDisclosure>
+			{is.function(renderTrigger) ? renderTrigger(dialog) : renderTrigger}
 			<Portal>
 				<DialogBackdrop {...dialog} className={cx(backdropStyles)}>
 					<View className={dialogWrapperStyles}>
@@ -139,6 +145,7 @@ function Modal({
 const ConnectedComponent = platformConnect('Modal', Modal);
 ConnectedComponent.Body = Card.Body;
 ConnectedComponent.Header = ModalHeader;
-ConnectedComponent.Footer = Card.Footer;
+ConnectedComponent.Footer = ModalFooter;
+ConnectedComponent.Trigger = ModalTrigger;
 
 export default ConnectedComponent;

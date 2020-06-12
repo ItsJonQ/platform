@@ -120,6 +120,13 @@ const BUTTON_PROPS = {
 		ANIMATION_PROPS.transitionTimingFunctionControl,
 };
 
+const CARD_PROPS = {
+	cardBackgroundColor: '#fff',
+	cardBackgroundColorDark: '#292929',
+	cardSectionBorderColor: 'rgba(0, 0, 0, 0.1)',
+	cardSectionBorderColorDark: 'rgba(255, 255, 255, 0.1)',
+};
+
 const ICON_CONTROL_PROPS = {
 	iconControlBackgroundColor: CONTROL_PROPS.controlBackgroundColor,
 	iconControlBackgroundColorDark: CONTROL_PROPS.controlBackgroundColorDark,
@@ -191,6 +198,7 @@ export const THEME_PROPS = {
 	// Props
 	...ANIMATION_PROPS,
 	...BUTTON_PROPS,
+	...CARD_PROPS,
 	...COLOR_PROPS,
 	...CONTROL_PROPS,
 	...ELEVATION_PROPS,

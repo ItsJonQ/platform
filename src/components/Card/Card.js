@@ -6,15 +6,24 @@ import View from '../View';
 import Body from './Card.Body';
 import Header from './Card.Header';
 import Footer from './Card.Footer';
+import { useTheme } from '../../css';
 
 function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
+	const { isDark, ...theme } = useTheme();
+
 	const baseStyles = css`
-		background: white;
+		background-color: ${theme.cardBackgroundColor};
 		border-radius: 8px;
+		color: ${theme.colorText};
 		position: relative;
 	`;
 
-	const classes = cx(baseStyles, className);
+	const darkStyles = css`
+		background-color: ${theme.cardBackgroundColorDark};
+		color: ${theme.colorTextDark};
+	`;
+
+	const classes = cx(baseStyles, isDark && darkStyles, className);
 
 	return (
 		<View className={classes} ref={forwardedRef} {...props}>
