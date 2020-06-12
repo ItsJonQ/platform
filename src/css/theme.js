@@ -40,6 +40,13 @@ const COLOR_PROPS = {
 	colorBodyBackgroundDark: '#18191A',
 };
 
+const SURFACE_PROPS = {
+	surfaceBackgroundColor: '#fff',
+	surfaceBackgroundColorDark: '#292929',
+	surfaceContainerBackground: '#EFEFF3',
+	surfaceContainerBackgroundDark: COLOR_PROPS.colorBodyBackgroundDark,
+};
+
 const ELEVATION_PROPS = {
 	elevationTransitionDuration: ANIMATION_PROPS.transitionDuration,
 	elevationTransitionTimingFunction: ANIMATION_PROPS.transitionTimingFunction,
@@ -123,8 +130,8 @@ const BUTTON_PROPS = {
 };
 
 const CARD_PROPS = {
-	cardBackgroundColor: '#fff',
-	cardBackgroundColorDark: '#292929',
+	cardBackgroundColor: SURFACE_PROPS.surfaceBackgroundColor,
+	cardBackgroundColorDark: SURFACE_PROPS.surfaceBackgroundColorDark,
 	cardSectionBorderColor: 'rgba(0, 0, 0, 0.1)',
 	cardSectionBorderColorDark: 'rgba(255, 255, 255, 0.1)',
 };
@@ -215,11 +222,12 @@ const platformStyles = css`
 export const THEME_PROPS = {
 	// Base theme
 	...THEME_CONFIG_PROPS,
+	...COLOR_PROPS,
+	...SURFACE_PROPS,
 	// Props
 	...ANIMATION_PROPS,
 	...BUTTON_PROPS,
 	...CARD_PROPS,
-	...COLOR_PROPS,
 	...CONTROL_PROPS,
 	...ELEVATION_PROPS,
 	...GRID_PROPS,
