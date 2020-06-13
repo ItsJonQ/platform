@@ -35,6 +35,9 @@ function Button({
 	const { isDark, gridBase, ...theme } = useTheme();
 	const componentTagName = href ? 'a' : as;
 
+	const buttonTransition = `all ${theme.buttonTransitionDuration}
+	${theme.buttonTransitionTimingFunction}`;
+
 	const baseStyles = css`
 		align-items: center;
 		appearance: none;
@@ -73,8 +76,7 @@ function Button({
 		&:hover,
 		&:active,
 		&:focus {
-			transition: all ${theme.buttonTransitionDuration}
-				${theme.buttonTransitionTimingFunction};
+			transition: ${buttonTransition};
 		}
 
 		&[disabled],

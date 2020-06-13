@@ -4,7 +4,7 @@ import { platformConnect } from '../PlatformProvider';
 import View from '../View';
 import { useTheme } from '../../css';
 
-function Surface({ className, forwardedRef, ...props }) {
+export function useSurfaceStyles() {
 	const { isDark, ...theme } = useTheme();
 
 	const baseStyles = css`
@@ -18,7 +18,12 @@ function Surface({ className, forwardedRef, ...props }) {
 		color: ${theme.colorTextDark};
 	`;
 
-	const classes = cx(baseStyles, isDark && darkStyles, className);
+	return cx(baseStyles, isDark && darkStyles);
+}
+
+function Surface({ className, forwardedRef, ...props }) {
+	const baseStyles = useSurfaceStyles();
+	const classes = cx(baseStyles, className);
 
 	return <View className={classes} ref={forwardedRef} {...props} />;
 }

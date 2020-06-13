@@ -4,7 +4,12 @@ import { platformConnect } from '../PlatformProvider';
 import View from '../View';
 import { useTheme } from '../../css';
 
-function ControlListItemSeparator({ className, ...props }) {
+function ControlListItemSeparator({
+	className,
+	forwardedRef,
+	hasIcon = false,
+	...props
+}) {
 	const { isDark, breakpoint, space } = useTheme();
 
 	const baseStyles = css`
@@ -30,9 +35,24 @@ function ControlListItemSeparator({ className, ...props }) {
 		`}
 	`;
 
-	const classes = cx(baseStyles, className);
+	const iconStyles = css`
+		left: ${space(12)};
 
-	return <View aria-hidden="true" className={classes} {...props} />;
+		${breakpoint('md')`
+			left: ${space(12)};
+		`};
+	`;
+
+	const classes = cx(baseStyles, hasIcon && iconStyles, className);
+
+	return (
+		<View
+			aria-hidden="true"
+			className={classes}
+			ref={forwardedRef}
+			{...props}
+		/>
+	);
 }
 
 export default platformConnect(

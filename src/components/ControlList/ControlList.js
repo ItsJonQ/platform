@@ -1,11 +1,19 @@
 import React from 'react';
 import { css, cx } from 'emotion';
+import { FiAirplay } from 'react-icons/fi';
 import { platformConnect } from '../PlatformProvider';
 import Surface from '../Surface';
 import { useTheme } from '../../css';
+import { ControlListContextProvider } from './ControlList.Context';
+import ListMenu from './ControlList.Menu';
 import ListItem from './ControlList.Item';
 
-function ControlList({ className, forwardedRef, ...props }) {
+function ControlList({
+	className,
+	forwardedRef,
+	label = 'Control List',
+	...props
+}) {
 	const { breakpoint } = useTheme();
 
 	const baseStyles = css`
@@ -23,11 +31,15 @@ function ControlList({ className, forwardedRef, ...props }) {
 	const classes = cx(baseStyles, className);
 
 	return (
-		<Surface className={classes} {...props}>
-			<ListItem />
-			<ListItem type="next" />
-			<ListItem />
-		</Surface>
+		<ControlListContextProvider>
+			<Surface className={classes} {...props}>
+				<ListMenu label={label}>
+					<ListItem icon={<FiAirplay />} />
+					<ListItem type="next" nextLabel="There" />
+					<ListItem />
+				</ListMenu>
+			</Surface>
+		</ControlListContextProvider>
 	);
 }
 

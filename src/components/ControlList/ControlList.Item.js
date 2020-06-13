@@ -1,34 +1,65 @@
 import React from 'react';
 import { css, cx } from 'emotion';
+import { MenuItem } from 'reakit/Menu';
 import { platformConnect } from '../PlatformProvider';
 import Flex from '../Flex';
-import Surface from '../Surface';
-import { useUniqueId, noop } from '../../utils';
+import { useSurfaceStyles } from '../Surface';
+import { noop } from '../../utils';
 import { useTheme } from '../../css';
-
+import { useControlListContext } from './ControlList.Context';
 import Action from './ControlList.Action';
 import Separator from './ControlList.Separator';
+
+function ControlListIconWrapper({
+	children,
+	className,
+	forwardedRef,
+	...props
+}) {
+	const baseStyles = css`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 24px;
+		width: 24px;
+	`;
+	const classes = cx(baseStyles, className);
+
+	return (
+		<Flex.Item className={classes} ref={forwardedRef} {...props}>
+			{children}
+		</Flex.Item>
+	);
+}
 
 function ControlListItem({
 	checked,
 	className,
+	forwardedRef,
+	icon,
+	nextLabel,
 	onChange = noop,
 	type = 'switch',
 	...props
 }) {
 	const { isDark, breakpoint, space } = useTheme();
-	const id = useUniqueId(ControlListItem, 'control-list-item', props.id);
-	const switchId = `${id}-switch`;
+	const { menu } = useControlListContext();
+	const surfaceStyles = useSurfaceStyles();
 
 	const baseStyles = css`
+		min-height: 40px;
+		outline: none;
 		padding: ${space(2)} ${space(2)} ${space(2)} ${space(4)};
 		position: relative;
-		min-height: 40px;
 		transition: background-color 120ms linear;
 
 		&:active {
 			background-color: rgba(0, 0, 0, 0.04);
 			user-select: none;
+		}
+
+		&:focus {
+			background-color: rgba(0, 0, 0, 0.04);
 		}
 
 		&:last-child {
@@ -51,37 +82,45 @@ function ControlListItem({
 
 		${isDark &&
 		css`
+			&:focus {
+				background-color: rgba(255, 255, 255, 0.02);
+			}
+
 			&:active {
 				background-color: rgba(0, 0, 0, 0.1);
 			}
 		`}
 	`;
 
-	const classes = cx(baseStyles, className);
+	const classes = cx(surfaceStyles, baseStyles, className);
 
-	const actionRight = (
+	const leftComponent = icon && (
+		<ControlListIconWrapper>{icon}</ControlListIconWrapper>
+	);
+	const rightComponent = (
 		<Action
 			checked={checked}
 			onChange={onChange}
-			id={switchId}
+			label={nextLabel}
 			type={type}
 		/>
 	);
 
-	const asComponent = type === 'switch' ? 'label' : props.as;
-
 	return (
-		<Surface
-			as={asComponent}
-			className={classes}
-			htmlFor={switchId}
+		<MenuItem
 			{...props}
-			__internal_baseComponent={Flex}
+			{...menu}
+			as={Flex}
+			className={classes}
+			focusable
+			gap={2}
+			ref={forwardedRef}
 		>
+			{leftComponent}
 			<Flex.Block>Hello</Flex.Block>
-			{actionRight}
-			<Separator />
-		</Surface>
+			{rightComponent}
+			<Separator hasIcon={!!icon} />
+		</MenuItem>
 	);
 }
 

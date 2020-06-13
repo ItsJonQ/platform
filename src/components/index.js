@@ -7,6 +7,7 @@ export { default as ControlList } from './ControlList';
 export { default as Flex } from './Flex';
 export { default as Elevation } from './Elevation';
 export { default as GlobalStyles } from './GlobalStyles';
+export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
 export { default as MediaQuery } from './MediaQuery';
 export { default as Modal } from './Modal';

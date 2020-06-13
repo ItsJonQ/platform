@@ -8,13 +8,14 @@ import {
 	Switch,
 	Text,
 } from '../src/components';
+import './story.css';
 
 function PlatformStoryDecorator(storyFn) {
 	const [isDark, setIsDark] = useState(true);
 
 	return (
 		<PlatformProvider theme={{ isDark }}>
-			<Spacer pb={10}>
+			<Spacer pb={10} px={4} pt={4}>
 				<Flex style={{ maxWidth: 180 }}>
 					<Flex.Item>
 						<Text>

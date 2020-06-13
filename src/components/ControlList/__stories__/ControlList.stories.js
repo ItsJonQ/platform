@@ -1,4 +1,5 @@
 import React from 'react';
+import Background from '../../Background';
 import ControlList from '../ControlList';
 
 export default {
@@ -8,8 +9,8 @@ export default {
 
 export const _default = () => {
 	return (
-		<div style={{ maxWidth: 480 }}>
+		<Background>
 			<ControlList />
-		</div>
+		</Background>
 	);
 };

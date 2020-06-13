@@ -4,7 +4,7 @@ import { platformConnect } from '../PlatformProvider';
 import View from '../View';
 import { useTheme } from '../../css';
 
-function Background({ className, forwardedRef, ...props }) {
+export function useBackgroundStyles() {
 	const { isDark, ...theme } = useTheme();
 
 	const baseStyles = css`
@@ -15,6 +15,12 @@ function Background({ className, forwardedRef, ...props }) {
 			background-color: ${theme.surfaceBackgroundBackgroundColorDark};
 		`}
 	`;
+
+	return baseStyles;
+}
+
+function Background({ className, forwardedRef, ...props }) {
+	const baseStyles = useBackgroundStyles();
 
 	const classes = cx(baseStyles, className);
 

@@ -6,13 +6,14 @@ function View(
 		as = 'div',
 		className,
 		children,
+		forwardedRef,
 		...props
 	},
 	ref,
 ) {
 	const componentProps = {
 		className,
-		ref,
+		ref: forwardedRef || ref,
 		...props,
 	};
 

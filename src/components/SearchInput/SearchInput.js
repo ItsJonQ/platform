@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { css, cx } from 'emotion';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { platformConnect } from '../PlatformProvider';
+import Icon from '../Icon';
 import IconButton from '../IconButton';
 import Spinner from '../Spinner';
 import TextField from '../TextField';
@@ -95,7 +96,11 @@ function SearchInput({
 function SearchPrefix({ isLoading = false, prefix }) {
 	return (
 		<>
-			{isLoading ? <Spinner size={16} /> : <FiSearch size={16} />}
+			{isLoading ? (
+				<Spinner size={16} />
+			) : (
+				<Icon size={16} icon={<FiSearch />} />
+			)}
 			{prefix}
 		</>
 	);
@@ -117,7 +122,7 @@ function ClearButton({ onClick = noop, value }) {
 			size="tiny"
 			onClick={handleOnClick}
 		>
-			<FiX size={12} />
+			<Icon size={12} icon={<FiX />} />
 		</IconButton>
 	);
 }
