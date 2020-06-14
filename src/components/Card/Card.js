@@ -9,7 +9,7 @@ import Footer from './Card.Footer';
 
 function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 	const baseStyles = css`
-		border: 1px solid rgba(255, 255, 255, 0.04);
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
 		border-radius: 8px;
 	`;
 
@@ -23,7 +23,7 @@ function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 				isInteractive={false}
 				offset={-1}
 			/>
-			<Elevation value={elevation} isInteractive={false} offset={-1} />
+			<Elevation value={elevation} isInteractive={false} />
 		</Surface>
 	);
 }

@@ -8,7 +8,7 @@ export default {
 
 export const _default = () => {
 	return (
-		<Menu.Provider menu={{ visible: true }}>
+		<Menu.Provider>
 			<Menu.Button>Open</Menu.Button>
 			<Menu>
 				<Menu.Item>Settings</Menu.Item>
