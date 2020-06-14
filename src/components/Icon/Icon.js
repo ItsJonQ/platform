@@ -6,6 +6,7 @@ function Icon({ className, forwardedRef, icon, size = 20, ...props }) {
 	const classes = cx(
 		css`
 			display: block;
+			user-select: none;
 		`,
 		className,
 	);

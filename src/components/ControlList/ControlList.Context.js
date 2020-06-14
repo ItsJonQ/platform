@@ -4,7 +4,7 @@ import { useMenuState } from 'reakit/Menu';
 export const ControlListContext = createContext();
 export const useControlListContext = () => useContext(ControlListContext);
 
-export function ControlListContextProvider({
+export function ControlListProvider({
 	children,
 	menu: menuStateProps = {},
 	value = {},

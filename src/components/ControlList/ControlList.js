@@ -4,7 +4,7 @@ import { FiAirplay } from 'react-icons/fi';
 import { platformConnect } from '../PlatformProvider';
 import Surface from '../Surface';
 import { useTheme } from '../../css';
-import { ControlListContextProvider } from './ControlList.Context';
+import { ControlListProvider } from './ControlList.Context';
 import ListMenu from './ControlList.Menu';
 import ListItem from './ControlList.Item';
 
@@ -31,7 +31,7 @@ function ControlList({
 	const classes = cx(baseStyles, className);
 
 	return (
-		<ControlListContextProvider>
+		<ControlListProvider>
 			<Surface className={classes} {...props}>
 				<ListMenu label={label}>
 					<ListItem icon={<FiAirplay />} />
@@ -39,7 +39,7 @@ function ControlList({
 					<ListItem />
 				</ListMenu>
 			</Surface>
-		</ControlListContextProvider>
+		</ControlListProvider>
 	);
 }
 

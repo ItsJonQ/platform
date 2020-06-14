@@ -27,7 +27,7 @@ function PlatformStoryDecorator(storyFn) {
 					</Flex.Item>
 				</Flex>
 			</Spacer>
-			{storyFn()}
+			<Spacer p={8}>{storyFn()}</Spacer>
 		</PlatformProvider>
 	);
 }

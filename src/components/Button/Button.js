@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button as BaseButton } from 'reakit/Button';
 import { css, cx } from 'emotion';
+import { FiChevronDown } from 'react-icons/fi';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import Elevation from '../Elevation';
 import Flex from '../Flex';
+import Icon from '../Icon';
 import Spinner from '../Spinner';
 import View from '../View';
 
@@ -18,6 +20,7 @@ function Button({
 	elevationHover,
 	justify = 'center',
 	gap = 2,
+	hasCaret = false,
 	href,
 	isBlock = false,
 	isDestructive = false,
@@ -32,7 +35,7 @@ function Button({
 	variant = 'secondary',
 	...props
 }) {
-	const { isDark, gridBase, ...theme } = useTheme();
+	const { isDark, gridBase, space, ...theme } = useTheme();
 	const componentTagName = href ? 'a' : as;
 
 	const buttonTransition = `all ${theme.buttonTransitionDuration}
@@ -251,6 +254,10 @@ function Button({
 		}
 	`;
 
+	const caretStyles = css`
+		margin-right: ${space(-1.5)};
+	`;
+
 	const contentStyles = css`
 		line-height: ${theme.buttonContentLineHeight};
 		min-height: ${theme.buttonLineHeight};
@@ -308,12 +315,21 @@ function Button({
 				>
 					{children}
 				</Flex.Item>
+
 				{suffix && (
 					<Flex.Item
 						as="span"
 						className={cx(prefixSuffixStyles, loadingStyles)}
 					>
 						{suffix}
+					</Flex.Item>
+				)}
+				{hasCaret && (
+					<Flex.Item
+						as="span"
+						className={cx(caretStyles, loadingStyles)}
+					>
+						<Icon icon={<FiChevronDown />} size={16} />
 					</Flex.Item>
 				)}
 			</Flex>

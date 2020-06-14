@@ -9,6 +9,7 @@ import Footer from './Card.Footer';
 
 function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 	const baseStyles = css`
+		border: 1px solid rgba(255, 255, 255, 0.04);
 		border-radius: 8px;
 	`;
 
@@ -17,8 +18,12 @@ function Card({ children, className, elevation = 2, forwardedRef, ...props }) {
 	return (
 		<Surface className={classes} ref={forwardedRef} {...props}>
 			{children}
-			<Elevation value={elevation ? 1 : 0} isInteractive={false} />
-			<Elevation value={elevation} isInteractive={false} />
+			<Elevation
+				value={elevation ? 1 : 0}
+				isInteractive={false}
+				offset={-1}
+			/>
+			<Elevation value={elevation} isInteractive={false} offset={-1} />
 		</Surface>
 	);
 }

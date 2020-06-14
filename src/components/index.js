@@ -10,6 +10,7 @@ export { default as GlobalStyles } from './GlobalStyles';
 export { default as Icon } from './Icon';
 export { default as IconButton } from './IconButton';
 export { default as MediaQuery } from './MediaQuery';
+export { default as Menu } from './Menu';
 export { default as Modal } from './Modal';
 export { default as SearchInput } from './SearchInput';
 export { default as Spacer } from './Spacer';

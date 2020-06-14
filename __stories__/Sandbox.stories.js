@@ -13,6 +13,7 @@ import {
 	Flex,
 	IconButton,
 	Modal,
+	Menu,
 	SearchInput,
 	Spacer,
 } from '../src/components';
@@ -57,9 +58,22 @@ export const _default = () => (
 					<Button size="large">Control</Button>
 				</Flex.Item>
 				<Flex.Item>
-					<Button size="large" variant="primary">
-						Create
-					</Button>
+					<Menu.Provider menu={{ placement: 'bottom-end' }}>
+						<Menu.Button
+							variant="primary"
+							isBlock
+							size="large"
+							hasCaret
+						>
+							Create
+						</Menu.Button>
+						<Menu>
+							<Menu.Item>New Repository</Menu.Item>
+							<Menu.Item>Import Repository</Menu.Item>
+							<Menu.Item>New Gist</Menu.Item>
+							<Menu.Item>New Organization</Menu.Item>
+						</Menu>
+					</Menu.Provider>
 				</Flex.Item>
 				<Flex.Item>
 					<IconButton>
