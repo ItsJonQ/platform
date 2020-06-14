@@ -1,10 +1,13 @@
 import React from 'react';
 import { css, cx } from 'emotion';
+import { DialogBackdrop } from 'reakit/Dialog';
 import { Menu as BaseMenu } from 'reakit/Menu';
 import { platformConnect } from '../PlatformProvider';
-import { DialogBackdrop } from 'reakit/Dialog';
 import Card from '../Card';
 import Spacer from '../Spacer';
+import Text from '../Text';
+import View from '../View';
+import Viewport from '../Viewport';
 import { useTheme } from '../../css';
 
 import { useMenuContext } from './Menu.Context';
@@ -24,28 +27,40 @@ function Menu({
 	const { menu } = useMenuContext();
 	const { breakpoint } = useTheme();
 
+	const wrapperStyles = css`
+		margin: 0;
+		outline: none;
+
+		${breakpoint('xs')`
+			transform: initial !important;
+		`}
+	`;
+
 	const baseStyles = css`
 		min-width: 180px;
-		outline: none;
+	`;
+
+	const cardWrapperStyles = css`
 		z-index: 999;
 		opacity: 0;
+		outline: none;
 
-		&[data-enter] {
+		[data-enter] & {
 			opacity: 1;
 		}
 
 		${breakpoint('xs')`
-			position: fixed !important;
-			bottom: 8px !important;
-			top: initial !important;
-			left: 8px !important;
-			right: 8px !important;
-			transform: translate3d(0, 100%, 0) !important;
+			position: fixed;
+			bottom: 8px;
+			top: initial;
+			left: 8px;
+			right: 8px;
+			transform: translate3d(0, 100%, 0);
 			max-height: 90vh;
 			transition: transform 180ms ease-in-out, opacity 180ms ease-in-out;
 
-			&[data-enter] {
-				transform: translate3d(0, 0, 0) !important;
+			[data-enter] & {
+				transform: translate3d(0, 0, 0);
 			}
 		`}
 	`;
@@ -88,16 +103,36 @@ function Menu({
 			<BaseMenu
 				{...menu}
 				aria-label={label}
-				as={Card}
-				className={classes}
-				elevation={5}
+				as={View}
+				className={wrapperStyles}
 				ref={forwardedRef}
 				preventBodyScroll={preventBodyScroll}
 				{...props}
 			>
-				<Spacer p={1.5} className={contentStyles}>
-					{children}
-				</Spacer>
+				<View className={cardWrapperStyles}>
+					<Card className={classes} elevation={5}>
+						<Spacer p={1.5} className={contentStyles}>
+							{children}
+						</Spacer>
+					</Card>
+					<Viewport.Mobile>
+						<Spacer pt={1} pb={0}>
+							<Card className={classes} elevation={5}>
+								<View className={contentStyles}>
+									<Item onClick={menu.hide}>
+										<Text
+											align="center"
+											display="block"
+											weight={600}
+										>
+											Close
+										</Text>
+									</Item>
+								</View>
+							</Card>
+						</Spacer>
+					</Viewport.Mobile>
+				</View>
 			</BaseMenu>
 			<DialogBackdrop {...other} className={backdropStyles} />
 		</>

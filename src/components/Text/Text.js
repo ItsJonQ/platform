@@ -6,11 +6,12 @@ import { useTheme } from '../../css';
 
 function Text({
 	as = 'span',
+	align,
 	className,
 	display,
 	forwardedRef,
-	fontSize,
-	fontWeight = 400,
+	size,
+	weight = 400,
 	lineHeight = 1.2,
 	variant,
 	...props
@@ -27,10 +28,11 @@ function Text({
 	`;
 
 	const modifierStyles = css({
-		fontSize,
-		fontWeight,
-		lineHeight,
 		display,
+		fontSize: size,
+		fontWeight: weight,
+		lineHeight,
+		textAlign: align,
 	});
 
 	const mutedStyles = css`
