@@ -1,15 +1,9 @@
 import React from 'react';
-import { useDialogState, Dialog, DialogBackdrop } from 'reakit/Dialog';
-import { Portal } from 'reakit/Portal';
 import { css, cx } from 'emotion';
-import { ModalContext } from './Modal.Context';
+import BaseModal from '../BaseModal';
 import { platformConnect } from '../PlatformProvider';
 import { useTheme } from '../../css';
 import Card from '../Card';
-import View from '../View';
-import { is } from '../../utils';
-
-import { useModalState } from './Modal.Context';
 import ModalHeader from './Modal.Header';
 import ModalFooter from './Modal.Footer';
 import ModalTrigger from './Modal.Trigger';
@@ -37,17 +31,12 @@ function Modal({
 	...props
 }) {
 	const { breakpoint, space } = useTheme();
-	const dialog = useDialogState({ animated: true, visible });
-	const { isUnderLayer } = useModalState(dialog);
-
 	const maxWidth = MODAL_SIZES[size] || MODAL_SIZES.md;
 
 	const modalTransition = `
 	opacity ${transitionDuration}ms ${transitionTimingFunction},
 			transform ${transitionDuration}ms ${transitionTimingFunction}
 	`;
-	const backdropTransition = `opacity ${backdropTransitionDuration}ms
-	${transitionTimingFunction}`;
 
 	const baseStyles = css`
 		left: 50%;
@@ -76,69 +65,36 @@ function Modal({
 			opacity: 1;
 			transform: translate3d(-50%, 0, 0);
 
-			${isUnderLayer &&
-			css`
+			&[data-underlayer] {
 				transform: translate3d(-50%, -10px, 0) scale(0.95);
 				transform-origin: top center;
-			`}
+			}
 		}
-	`;
-
-	const backdropStyles = css`
-		background: rgba(0, 0, 0, 0.5);
-		bottom: 0;
-		left: 0;
-		opacity: 0;
-		overflow-y: auto;
-		padding: ${space(4)};
-		perspective: 800px;
-		position: fixed;
-		right: 0;
-		top: 0;
-		transition: ${backdropTransition};
-		z-index: ${zIndex};
-
-		&[data-enter] {
-			opacity: 1;
-		}
-	`;
-
-	const dialogWrapperStyles = css`
-		position: absolute;
-		top: ${space(4)};
-		bottom: ${space(4)};
-		left: ${space(4)};
-		right: ${space(4)};
 	`;
 
 	const classes = cx(baseStyles, className);
 
-	const contextProps = {
-		dialog,
+	const modalProps = {
+		...props,
+		transitionTimingFunction,
+		transitionDuration,
+		backdropTransitionDuration,
+		renderTrigger,
+		size,
+		visible,
+		zIndex,
 	};
 
 	return (
-		<ModalContext.Provider value={contextProps}>
-			{is.function(renderTrigger) ? renderTrigger(dialog) : renderTrigger}
-			<Portal>
-				<DialogBackdrop {...dialog} className={cx(backdropStyles)}>
-					<View className={dialogWrapperStyles}>
-						<Dialog
-							aria-label={label}
-							tabIndex={0}
-							as={Card}
-							elevation={4}
-							className={classes}
-							ref={forwardedRef}
-							{...props}
-							{...dialog}
-						>
-							{children}
-						</Dialog>
-					</View>
-				</DialogBackdrop>
-			</Portal>
-		</ModalContext.Provider>
+		<BaseModal
+			as={Card}
+			elevation={4}
+			className={classes}
+			ref={forwardedRef}
+			{...modalProps}
+		>
+			{children}
+		</BaseModal>
 	);
 }
 
